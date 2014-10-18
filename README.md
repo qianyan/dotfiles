@@ -10,9 +10,10 @@ carl's dot files
 * vimrc
 * z
 * bashrc
-=======
+* svn_support
 
-* run dot_file
+run dotfile to migrate
+=======
 
 ```
 dotfile .your_rc
