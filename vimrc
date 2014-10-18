@@ -30,6 +30,11 @@ set statusline+=%l        " Current line
 set statusline+=/         " Separator
 set statusline+=%L        " Total lines
 
+" indent
+set shiftwidth=4	 " autoindent length
+set tabstop=4		 " define a tab length with space's numbers
+set expandtab   	 " blackspace instead of tab
+
 " {{ shortcuts
 " jj => esc
 inoremap <ESC> <nop>
@@ -44,6 +49,7 @@ nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 nnoremap <silent><leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <silent><leader>' viw<esc>a'<esc>hbi'<esc>lel
 
+map <C-n> :NERDTreeToggle<CR>
 " }}
 
 " Use Vim settings, rather than Vi settings (much better!).
@@ -59,6 +65,8 @@ Plugin 'mattn/emmet-vim'
 Plugin 'othree/html5.vim'
 Plugin 'fakeclip'
 Plugin 'paredit'
+Plugin 'nerdtree'
+Plugin 'ctrlp.vim'
 call vundle#end()
 
 filetype plugin indent on " required
