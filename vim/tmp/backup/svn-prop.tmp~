@@ -1,0 +1,7 @@
+out
+bin
+server.log
+cobertura.ser
+.idea
+.git
+.gitignore

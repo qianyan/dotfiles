@@ -1,0 +1,48 @@
+<component name="libraryTable">
+  <library name="test">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/test/serializer-2.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/spring-test-3.2.2.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/netty-3.5.7.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/bsh-1.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/jetty-websocket-8.1.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/xalan-2.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/commons-lang3-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/commons-exec-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/sac-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/commons-collections-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/guava-14.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/phantomjsdriver-1.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/hamcrest-core-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/junit-dep-4.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/htmlunit-core-js-2.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/commons-jxpath-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/selenium-java-2.40.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/xercesImpl-2.10.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/mockito-all-1.9.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/jna-3.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/protobuf-java-2.4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/httpclient-4.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/xml-apis-1.4.01.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/operadriver-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/httpcore-4.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/jcommander-1.29.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/hamcrest-library-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/apache-mime4j-0.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/ini4j-0.5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/commons-codec-1.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/jna-platform-3.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/htmlunit-2.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/cglib-nodep-2.1_3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/commons-io-2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/httpmime-4.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/testng-6.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/json-20080701.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/cssparser-0.9.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/test/nekohtml-1.9.17.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
