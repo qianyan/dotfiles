@@ -9,3 +9,11 @@ carl's dot files
 * gitignore_global
 * vimrc
 * z
+* bashrc
+=======
+
+* run dot_file
+
+```
+dotfile .your_rc
+```
