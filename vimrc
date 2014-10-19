@@ -80,7 +80,7 @@ Plugin 'othree/html5.vim'
 Plugin 'fakeclip'
 Plugin 'paredit'
 Plugin 'nerdtree'
-Plugin 'ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 Plugin 'tomasr/molokai'
 call vundle#end()
 
