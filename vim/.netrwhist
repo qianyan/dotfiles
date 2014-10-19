@@ -1,9 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/qianyan/Projects/workshops/jersey-ligthweight-app/out/artifacts/interfaces-web/exploded/interfaces-web.war'
-let g:netrw_dirhist_2='/Users/qianyan/Projects/workshops/jersey-ligthweight-app/out/artifacts/interfaces-web/exploded/interfaces-web.war/META-INF'
-let g:netrw_dirhist_3='/Users/qianyan/Projects/night-school/book-shelf/build'
-let g:netrw_dirhist_4='/Users/qianyan/Dropbox/octopress/_deploy/.git'
-let g:netrw_dirhist_5='/Users/qianyan/Sync/octopress'
-let g:netrw_dirhist_6='/Users/qianyan/Sync/octopress/plugins'
-let g:netrw_dirhist_7='/Users/qianyan/Projects/sfows/doc'
+let g:netrw_dirhist_cnt =0

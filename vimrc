@@ -48,8 +48,22 @@ nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 " insert ["] before and after current text.
 nnoremap <silent><leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <silent><leader>' viw<esc>a'<esc>hbi'<esc>lel
+" }}
 
+" {{ nerdTree 
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 map <C-n> :NERDTreeToggle<CR>
+" }}
+
+
+" {{ colorscheme
+""let g:molokai_original = 1
+""let g:rehash256 = 1
+""colorscheme molokai
+set background=dark
+colorscheme solarized
 " }}
 
 " Use Vim settings, rather than Vi settings (much better!).
@@ -67,6 +81,7 @@ Plugin 'fakeclip'
 Plugin 'paredit'
 Plugin 'nerdtree'
 Plugin 'ctrlp.vim'
+Plugin 'tomasr/molokai'
 call vundle#end()
 
 filetype plugin indent on " required
@@ -119,6 +134,7 @@ if has("autocmd")
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
+  au BufRead,BufNewFile *.groovy *.gradle :setfiletype groovy
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
