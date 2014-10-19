@@ -35,6 +35,8 @@ set shiftwidth=4	 " autoindent length
 set tabstop=4		 " define a tab length with space's numbers
 set expandtab   	 " blackspace instead of tab
 
+set relativenumber
+
 " {{ shortcuts
 " jj => esc
 inoremap <ESC> <nop>
