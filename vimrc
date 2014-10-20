@@ -91,6 +91,7 @@ Plugin 'wycats/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tomasr/molokai'
 Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 
 filetype plugin indent on " required
