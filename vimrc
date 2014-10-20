@@ -44,12 +44,6 @@ inoremap jj <ESC>
 " ; => :
 nnoremap ; :
 
-" <C-j> -> <C-w><C-j>
-nnoremap <C-j> <C-W><C-j>
-nnoremap <C-h> <C-W><C-h>
-nnoremap <C-k> <C-W><C-k>
-nnoremap <C-l> <C-W><C-l>
-
 nnoremap <silent><leader>ev :vsp $MYVIMRC<CR>
 
 nnoremap <silent><leader>sv :source $MYVIMRC<CR> 
@@ -92,6 +86,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tomasr/molokai'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'christoomey/vim-tmux-navigator'
 call vundle#end()
 
 filetype plugin indent on " required
