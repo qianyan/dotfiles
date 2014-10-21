@@ -17,18 +17,24 @@ endif
 
 " alias to correct the typo error.
 iabbrev waht what
-iabbrev wich which 
+iabbrev wich which
+
+function! CurrentGitBranch()
+    let ref = system("git symbolic-ref HEAD 2> /dev/null")
+    return ref[strlen("refs/heads/"):]
+endfunction
 
 let mapleader=','
 
 " show statusline
-set laststatus=2          " show status bar	
+set laststatus=2          " show status bar
 set statusline=%f         " Path to the file
 set statusline+=%=        " Switch to the right side
-set statusline+=%y        " Switch to the right side
+set statusline+=%y        " Filetype of the file
+set statusline+=%*        " Filetype of the file
 set statusline+=%l        " Current line
 set statusline+=/         " Separator
-set statusline+=%L        " Total lines
+set statusline+=%L@%{CurrentGitBranch()}        " Total lines
 
 " indent
 set shiftwidth=4	 " autoindent length
@@ -46,13 +52,13 @@ nnoremap ; :
 
 nnoremap <silent><leader>ev :vsp $MYVIMRC<CR>
 
-nnoremap <silent><leader>sv :source $MYVIMRC<CR> 
+nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 " insert ["] before and after current text.
 nnoremap <silent><leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <silent><leader>' viw<esc>a'<esc>hbi'<esc>lel
 " }}
 
-" {{ nerdTree 
+" {{ nerdTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -134,8 +140,8 @@ if has("autocmd")
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
-  " clear a group, because of appending effection. 
-  au! 
+  " clear a group, because of appending effection.
+  au!
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
