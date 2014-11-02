@@ -34,7 +34,7 @@ set statusline+=%y        " Filetype of the file
 set statusline+=%*        " Filetype of the file
 set statusline+=%l        " Current line
 set statusline+=/         " Separator
-set statusline+=%L@%{CurrentGitBranch()}        " Total lines
+set statusline+=%L        " Total lines
 
 " indent
 set shiftwidth=4	 " autoindent length
@@ -65,6 +65,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 map <C-n> :NERDTreeToggle<CR>
 " }}
 
+" {{ pymode
+    let g:pymode_rope = 1
+" }}
 
 " {{ colorscheme
 ""let g:molokai_original = 1
@@ -73,7 +76,7 @@ map <C-n> :NERDTreeToggle<CR>
 set background=dark
 colorscheme solarized
 " }}
-
+  
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -93,8 +96,11 @@ Plugin 'tomasr/molokai'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'klen/python-mode'
 call vundle#end()
 
+" if in git repo - use git file listing command, should be faster
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files  --exclude-standard -cod']
 filetype plugin indent on " required
 
 " allow backspacing over everything in insert mode
