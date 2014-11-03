@@ -54,9 +54,16 @@ nnoremap <silent><leader>ev :vsp $MYVIMRC<CR>
 
 nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 " insert ["] before and after current text.
-nnoremap <silent><leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap <silent><leader>" viw<esc>a"<esc>hbi"<esc>lel nnoremap
 nnoremap <silent><leader>' viw<esc>a'<esc>hbi'<esc>lel
 " }}
+
+vnoremap q gq
+nnoremap Q gqap
+
+vnoremap <leader>s :sort<CR>
+vnoremap < <gv " better indentation
+vnoremap > >gv " better indentation
 
 " {{ nerdTree
 autocmd StdinReadPre * let s:std_in=1
@@ -68,6 +75,20 @@ map <C-n> :NERDTreeToggle<CR>
 " {{ pymode
     let g:pymode_rope = 1
 " }}
+"
+" {{ python editing
+set nofoldenable
+" }}
+
+" {{
+let ropevim_enable_shortcuts = 1
+let g:pymode_rope_goto_def_newwin = "vnew"
+let g:pymode_rope_extended_complete = 1
+let g:pymode_breakpoint = 0
+let g:pymode_syntax = 1
+let g:pymode_syntax_builtin_objs = 1
+let g:pymode_syntax_builtin_funcs = 1
+"}}}
 
 " {{ colorscheme
 ""let g:molokai_original = 1
