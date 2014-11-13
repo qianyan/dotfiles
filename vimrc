@@ -90,6 +90,10 @@ let g:pymode_syntax_builtin_objs = 1
 let g:pymode_syntax_builtin_funcs = 1
 "}}}
 
+"" {{
+nmap <F8> :TagbarToggle<CR>
+""}}
+
 " {{ colorscheme
 ""let g:molokai_original = 1
 ""let g:rehash256 = 1
@@ -118,6 +122,10 @@ Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'klen/python-mode'
+Plugin 'myhere/vim-nodejs-complete'
+Plugin 'majutsushi/tagbar'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'marijnh/tern_for_vim'
 call vundle#end()
 
 " if in git repo - use git file listing command, should be faster
