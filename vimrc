@@ -47,6 +47,7 @@ set relativenumber
 " jj => esc
 inoremap <ESC> <nop>
 inoremap jj <ESC>
+
 " ; => :
 nnoremap ; :
 
