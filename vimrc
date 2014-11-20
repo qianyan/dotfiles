@@ -127,6 +127,7 @@ Plugin 'myhere/vim-nodejs-complete'
 Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'marijnh/tern_for_vim'
+Plugin 'tpope/vim-surround'
 call vundle#end()
 
 " if in git repo - use git file listing command, should be faster
