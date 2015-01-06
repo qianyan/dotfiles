@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/qianyan/Projects/Mocks_And_Stubs/baseline/src'
-let g:netrw_dirhist_2='/Users/qianyan/Projects/Mocks_And_Stubs/baseline/src/cashregister'
-let g:netrw_dirhist_3='/Users/qianyan/Projects/Mocks_And_Stubs/baseline/src'
-let g:netrw_dirhist_4='/Users/qianyan/Projects/Mocks_And_Stubs/baseline/src/cashregister'
-let g:netrw_dirhist_5='/Users/qianyan/Projects/sfows/sf-services'
-let g:netrw_dirhist_6='/Users/qianyan/Projects/sfows/sf-services/.gradle'
