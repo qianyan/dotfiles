@@ -50,11 +50,41 @@ set expandtab      " blackspace instead of tab
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
-endif
+" {{ nerdTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+map <C-n> :NERDTreeToggle<CR>
+" }}
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+" {{ set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'rizzatti/dash.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'othree/html5.vim'
+Plugin 'kana/vim-fakeclip'
+Plugin 'paredit.vim'
+Plugin 'wycats/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tomasr/molokai'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'klen/python-mode'
+Plugin 'myhere/vim-nodejs-complete'
+Plugin 'majutsushi/tagbar'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'tpope/vim-surround'
+Plugin 'chriskempson/vim-tomorrow-theme'
+call vundle#end()
+
+colorscheme tomorrow
+set nobackup		" do not keep a backup file 
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
