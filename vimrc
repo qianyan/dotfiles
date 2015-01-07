@@ -81,9 +81,14 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'tpope/vim-surround'
 Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'altercation/vim-colors-solarized'
 call vundle#end()
 
-colorscheme tomorrow
+"colorscheme tomorrow
+syntax enable
+set background=dark
+colorscheme solarized
+
 set nobackup		" do not keep a backup file 
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
