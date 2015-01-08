@@ -82,6 +82,7 @@ Plugin 'marijnh/tern_for_vim'
 Plugin 'tpope/vim-surround'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'jponge/vim-golo'
 call vundle#end()
 
 "colorscheme tomorrow
