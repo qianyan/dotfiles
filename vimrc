@@ -30,7 +30,11 @@ nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 " insert ["] before and after current text.
 nnoremap <silent><leader>" viw<esc>a"<esc>hbi"<esc>lel nnoremap
 nnoremap <silent><leader>' viw<esc>a'<esc>hbi'<esc>lel
+nnoremap <leader>t :MakeGreen %<CR>
 " }}
+
+let g:makegreen_stay_on_file = 1
+au BufNewFile,BufRead *.js set filetype=javascript
 
 " show statusline
 set laststatus=2          " show status bar
@@ -78,11 +82,12 @@ Plugin 'klen/python-mode'
 Plugin 'myhere/vim-nodejs-complete'
 Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'marijnh/tern_for_vim'
 Plugin 'tpope/vim-surround'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'jponge/vim-golo'
+Plugin 'lambdalisue/nodeunit.vim'
+Plugin 'reinh/vim-makegreen'
 call vundle#end()
 
 "colorscheme tomorrow
