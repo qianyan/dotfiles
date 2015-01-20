@@ -53,6 +53,7 @@ set expandtab      " blackspace instead of tab
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
+set nu
 
 " {{ nerdTree
 autocmd StdinReadPre * let s:std_in=1
@@ -96,6 +97,7 @@ set background=dark
 colorscheme solarized
 
 set nobackup		" do not keep a backup file 
+set noswapfile
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
