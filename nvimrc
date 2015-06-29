@@ -86,6 +86,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-surround'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'freeo/vim-kalisi'
 Plugin 'jponge/vim-golo'
 Plugin 'lambdalisue/nodeunit.vim'
 Plugin 'reinh/vim-makegreen'
@@ -96,7 +97,7 @@ call vundle#end()
 syntax enable
 set updatetime=750
 set background=dark
-colorscheme solarized
+colorscheme kalisi
 
 let g:gitgutter_realtime = 1
 set nobackup		" do not keep a backup file 
