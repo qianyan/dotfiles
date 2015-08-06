@@ -15,6 +15,7 @@ ZSH_THEME="fino"
 alias glw="./gradlew"
 alias sr='source ~/.zshrc'
 alias run='./tools/ant/bin/ant'
+alias ni='nvim'
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -79,6 +80,7 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
+export ANDROID_HOME=/Users/qianyan/bin/android-sdk-macosx
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 source $HOME/.rvm/scripts/rvm
