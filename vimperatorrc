@@ -2,8 +2,8 @@
 
 source! /Users/qianyan/.vimperatorrc.local
 inoremap jk <ESC>
-nnoremap j <C-d>
-nnoremap k <C-u>
+nnoremap J <C-d>
+nnoremap K <C-u>
 nnoremap ; :
 set hintchars=hsdfgyuiopqwertnmzxcvb
 set editor=subl
