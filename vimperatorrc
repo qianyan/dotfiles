@@ -8,7 +8,7 @@ nnoremap ; :
 set hintchars=hsdfgyuiopqwertnmzxcvb
 set editor=subl
 " ui
-set gui=none
+set gui=nonavigation
 colorscheme solarized_dark
 
 set focuscontent
