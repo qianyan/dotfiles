@@ -16,6 +16,9 @@ alias glw="./gradlew"
 alias sr='source ~/.zshrc'
 alias run='./tools/ant/bin/ant'
 alias ni='nvim'
+alias tm='tmux -2'
+alias -s md='subl'
+alias gon="cat .git/config | awk '/url/{print \$3}' | xargs open"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -54,7 +57,7 @@ alias ni='nvim'
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git svn z colored-man zsh-syntax-highlighting)
+plugins=(git mercurial svn z osx lein colored-man zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.svn_support.sh

@@ -27,6 +27,16 @@ nnoremap <silent><leader>ev :vsp $MYVIMRC<CR>
 
 nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 
+" terminal normal mapping
+tnoremap <esc> <C-\><C-n>
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+" split terminal
+cnoremap ts split term://$SHELL \| startinsert
+cnoremap tv vsp term://$SHELL \| startinsert
+
 " insert ["] before and after current text.
 nnoremap <silent><leader>" viw<esc>a"<esc>hbi"<esc>lel nnoremap
 nnoremap <silent><leader>' viw<esc>a'<esc>hbi'<esc>lel
@@ -55,6 +65,8 @@ set expandtab      " blackspace instead of tab
 set backspace=indent,eol,start
 set nu
 
+set splitright
+set splitbelow
 " {{ nerdTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
