@@ -8,11 +8,12 @@ nnoremap ; :
 set hintchars=hsdfgyuiopqwertnmzxcvb
 set editor=subl
 " ui
-set gui=nonavigation
+"set gui=nonavigation
+set gui=none
 colorscheme solarized_dark
 
 set focuscontent
-
+set visualbell
 nnoremap e : js __readable_by_evernote.context_menu__call()<CR>
 " vim: set ft=vimperator:
 

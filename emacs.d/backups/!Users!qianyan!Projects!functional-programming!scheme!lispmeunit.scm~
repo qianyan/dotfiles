@@ -1,0 +1,96 @@
+;;; list of (testName . closure)
+(define *tests* '())
+ ;;; list of ((testName . closure) . failMessage)
+(define *failures* '())
+ ;;; continuation to exit a test due to failure
+(define *exitTest* '())
+ ;;; current (testName . closure)
+(define *test* '())
+
+(define (TestRunner)
+  (clearFailures)
+  (for-each runTest *tests*)
+  (testReport)
+  #n)
+
+(define (clearFailures)
+  (set! *failures* '()))
+
+(define (runTest aTest)
+  (set! *test* aTest)
+  (call/cc
+   (lambda (exitTest)
+     (set! *exitTest* exitTest)
+     (display ".")
+     ((cdr aTest)))))
+
+(define (testReport)
+  (newline)
+  (if (null? *failures*)
+      (displayPassReport)
+      (displayFailReport)))
+
+(define (displayPassReport)
+  (display "OK (")
+  (display (length *tests*))
+  (display " tests)"))
+
+(define (displayFailReport)
+  (display "Tests Run: ")
+  (display (length *tests*))
+  (display " Failures: ")
+  (display (length *failures*))
+  (for-each displayFailure *failures*))
+
+(define (displayFailure aFailure)
+  (newline)
+  (display "->  ")
+  (display (caar aFailure))
+  (display ": ")
+  (display (cdr aFailure)))
+
+(define (clearTests)
+  (set! *tests* '()))
+
+(define (addTest aName aTest)
+  (set!
+   *tests*
+   (cons (cons aName aTest) *tests*)))
+
+(macro (defTest args)
+  (list
+   'addTest
+   (cadr args)
+   (cons 'lambda
+         (cons '()
+               (cddr args)))))
+
+(define (assertTrue aMessage aBoolean)
+  (if (not aBoolean)
+      (fail aMessage)))
+
+(define (assertFalse aMessage aBoolean)
+  (if aBoolean
+      (fail aMessage)))
+
+(define (assertNull? aMessage anObject)
+  (if (not (null? anObject))
+      (failedCompare aMessage '() anObject)))
+
+(define (assert aMessage anOperation expectedObject anObject)
+  (if (not (anOperation expectedObject anObject))
+      (failedCompare aMessage expectedObject anObject)))
+
+(define (failedCompare aMessage expectedObject anObject)
+  (fail
+   (string-append
+    aMessage
+    ": Expected "
+    (object->string expectedObject)
+    " got "
+    (object->string anObject))))
+
+(define (fail aMessage)
+  (set! *failures* (cons (cons *test* aMessage) *failures*))
+  (display "F")
+  (*exitTest* #f))

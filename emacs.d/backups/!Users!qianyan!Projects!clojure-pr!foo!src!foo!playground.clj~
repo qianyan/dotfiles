@@ -1,0 +1,11 @@
+(ns foo.playground)
+;;; for-loop and loop
+
+(def n 10)
+(prn n)
+(loop [i 0]
+  (when (< i n)
+    (prn i)
+    (recur (inc i))))
+
+

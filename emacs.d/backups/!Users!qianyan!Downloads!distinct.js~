@@ -1,0 +1,25 @@
+var fs = require('fs'),
+    _ = require('lodash'),
+    olds = require('./oldStations.json'),
+    news = require('./newStations.json');
+
+var _olds = _.map(olds, function(v) {
+    return v.name;
+});
+
+//console.log(news)
+//var diff = _.difference(news, _olds);
+
+//console.log(diff, diff.length);
+//
+//var a = _.union(news, _olds)
+//console.log(a, a.length)
+
+fs.writeFile('data_from_sicong.json', _olds.join('\n'), function(err){
+    if(err) throw err;
+    console.log('it\'s saved');
+
+});
+
+
+

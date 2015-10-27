@@ -3,3 +3,5 @@
 	email = qianyan@thoughtworks.com
 [push]
 	default = matching
+[http]
+	sslVerify = false

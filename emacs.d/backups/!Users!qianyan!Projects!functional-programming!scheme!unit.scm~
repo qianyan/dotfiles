@@ -1,0 +1,89 @@
+;; A simple unit testing framework for scsh. open handle ; we need `with-handler'
+
+(define *tests* '())
+(define *test-failures* '())
+
+;;
+;; 'assert' comes from Rolf-Thomas Hoppe's 'krims' package at
+;; http://www.scsh.net/resources/sunterlib.html
+;;
+
+(define-syntax assert
+  (syntax-rules ()
+    ((assert ?x ?y0 ...)
+     (if (not ?x) (error "Assertion failed" '?x ?y0 ...)))))
+
+(define-syntax define-tests
+  (syntax-rules ()
+    ((define-tests ?suite-name ?bindings (?name1 ?body1 ...) ...)
+     (set-test-suite! '?suite-name
+                      (list (cons '?name1 (lambda () (let* ?bindings ?body1 ...))) ...)))))
+
+(define (set-test-suite! name tests)
+  (if (assq name *tests*)
+      (set-cdr! (assq name *tests*) tests)
+      (set! *tests* (alist-cons name tests *tests*))))
+
+(define (find-test-by-name suite-name test-name default-thunk)
+  (let* ((suite (assq suite-name *tests*))
+         (test (assq test-name (cdr suite))))
+    (if (not test)
+        default-thunk
+        (cdr test))))
+
+(define (setup-thunk suite-name)
+  (find-test-by-name suite-name 'setup (lambda () #f)))
+
+(define (teardown-thunk suite-name)
+  (find-test-by-name suite-name 'teardown (lambda () #f)))
+
+(define (test-thunks suite-name)
+  ;; Returns the test routines, filtering out 'setup and 'teardown forms.
+  (let ((suite (assq suite-name *tests*)))
+    (remove (lambda (tst) (or (eq? 'setup (car tst))
+                              (eq? 'teardown (car tst))))
+            (cdr suite))))
+
+(define (with-handle-test-error* suite-name test-name thunk)
+  (call-with-current-continuation
+   (lambda (k)
+     (with-handler
+      (lambda (condition next)
+        (set! *test-failures*
+              (cons (list suite-name test-name condition) *test-failures*))
+        (k '()))
+      thunk))))
+
+(define-syntax with-handle-test-error
+  (syntax-rules ()
+    ((with-handle-test-error ?suite-name ?test-name ?body ...)
+     (with-handle-test-error* ?suite-name ?test-name (lambda () ?body ...)))))
+
+(define (display-failures test-failures)
+  (for-each (lambda (failure)
+              (display "FAILURE: ")
+              (display failure)
+              (newline)) test-failures))
+
+(define (run-tests)
+  (set! *test-failures* '())
+  (for-each (lambda (suite)
+              (run-test-suite (car suite)))
+            *tests*)
+  (display-failures *test-failures*))
+
+(define (run-test-suite suite-name)
+  (let ((suite (assq suite-name *tests*)))
+    (if (not suite)
+        (error "Suite " suite-name "not defined"))
+    (for-each (lambda (tst)
+                (with-handle-test-error suite-name (car tst)
+                                        (run-test suite-name (car tst))))
+
+              (test-thunks suite-name))))
+
+(define (run-test suite-name test-name)
+  (dynamic-wind (setup-thunk suite-name)
+      (find-test-by-name suite-name test-name 'test-not-found)
+      (teardown-thunk suite-name)))
+

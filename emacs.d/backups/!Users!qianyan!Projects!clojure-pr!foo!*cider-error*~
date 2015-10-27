@@ -1,0 +1,64 @@
+
+  Show: Clojure Java REPL Tooling Duplicates All  (24 frames hidden)
+
+2. Unhandled clojure.lang.Compiler$CompilerException
+   Error compiling:
+   /Users/qianyan/Projects/clojure-pr/foo/src/foo/core.clj:96:49
+
+                 Compiler.java: 7142  clojure.lang.Compiler/load
+                          REPL:    1  foo.core/eval7860
+                 Compiler.java: 6703  clojure.lang.Compiler/eval
+                 Compiler.java: 6666  clojure.lang.Compiler/eval
+                      core.clj: 2927  clojure.core/eval
+                      main.clj:  239  clojure.main/repl/read-eval-print/fn
+                      main.clj:  239  clojure.main/repl/read-eval-print
+                      main.clj:  257  clojure.main/repl/fn
+                      main.clj:  257  clojure.main/repl
+                   RestFn.java: 1523  clojure.lang.RestFn/invoke
+        interruptible_eval.clj:   72  clojure.tools.nrepl.middleware.interruptible-eval/evaluate/fn
+                      AFn.java:  152  clojure.lang.AFn/applyToHelper
+                      AFn.java:  144  clojure.lang.AFn/applyTo
+                      core.clj:  624  clojure.core/apply
+                      core.clj: 1862  clojure.core/with-bindings*
+                   RestFn.java:  425  clojure.lang.RestFn/invoke
+        interruptible_eval.clj:   56  clojure.tools.nrepl.middleware.interruptible-eval/evaluate
+        interruptible_eval.clj:  188  clojure.tools.nrepl.middleware.interruptible-eval/interruptible-eval/fn/fn
+        interruptible_eval.clj:  157  clojure.tools.nrepl.middleware.interruptible-eval/run-next/fn
+                      AFn.java:   22  clojure.lang.AFn/run
+       ThreadPoolExecutor.java: 1142  java.util.concurrent.ThreadPoolExecutor/runWorker
+       ThreadPoolExecutor.java:  617  java.util.concurrent.ThreadPoolExecutor$Worker/run
+                   Thread.java:  745  java.lang.Thread/run
+
+1. Caused by java.lang.RuntimeException
+   EOF while reading
+
+                     Util.java:  221  clojure.lang.Util/runtimeException
+               LispReader.java:  168  clojure.lang.LispReader/read
+                       RT.java: 1737  clojure.lang.RT/readString
+                      core.clj: 3497  clojure.core/read-string
+                      core.clj:  100  foo.core/eval7947
+                 Compiler.java: 6703  clojure.lang.Compiler/eval
+                 Compiler.java: 7130  clojure.lang.Compiler/load
+                          REPL:    1  foo.core/eval7860
+                 Compiler.java: 6703  clojure.lang.Compiler/eval
+                 Compiler.java: 6666  clojure.lang.Compiler/eval
+                      core.clj: 2927  clojure.core/eval
+                      main.clj:  239  clojure.main/repl/read-eval-print/fn
+                      main.clj:  239  clojure.main/repl/read-eval-print
+                      main.clj:  257  clojure.main/repl/fn
+                      main.clj:  257  clojure.main/repl
+                   RestFn.java: 1523  clojure.lang.RestFn/invoke
+        interruptible_eval.clj:   72  clojure.tools.nrepl.middleware.interruptible-eval/evaluate/fn
+                      AFn.java:  152  clojure.lang.AFn/applyToHelper
+                      AFn.java:  144  clojure.lang.AFn/applyTo
+                      core.clj:  624  clojure.core/apply
+                      core.clj: 1862  clojure.core/with-bindings*
+                   RestFn.java:  425  clojure.lang.RestFn/invoke
+        interruptible_eval.clj:   56  clojure.tools.nrepl.middleware.interruptible-eval/evaluate
+        interruptible_eval.clj:  188  clojure.tools.nrepl.middleware.interruptible-eval/interruptible-eval/fn/fn
+        interruptible_eval.clj:  157  clojure.tools.nrepl.middleware.interruptible-eval/run-next/fn
+                      AFn.java:   22  clojure.lang.AFn/run
+       ThreadPoolExecutor.java: 1142  java.util.concurrent.ThreadPoolExecutor/runWorker
+       ThreadPoolExecutor.java:  617  java.util.concurrent.ThreadPoolExecutor$Worker/run
+                   Thread.java:  745  java.lang.Thread/run
+

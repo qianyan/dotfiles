@@ -1,0 +1,40 @@
+(ns rx-playground.core)
+
+(require '[rx.lang.clojure.core :as rx])
+(import '(rx Observable) '(java.util.concurrent TimeUnit))
+
+(def  repl-out *out*)
+(defn prn-to-repl [& args]
+  (binding [*out* repl-out]
+    (apply prn args)))
+
+(defn retry-obs []
+  (let [errored (atom false)]
+    (rx/observable*
+     (fn [observer]
+       (if @errored
+         (rx/on-next observer 20)
+         (do (reset! errored true)
+             (throw (Exception. "Oops. Something went wrong"))))))))
+
+(rx/subscribe (->> (retry-obs)
+                   (.retry))
+              (fn [v] (prn "result is " v)))
+
+(defn fast-producing-obs []
+  (rx/map inc (Observable/interval 1 TimeUnit/MILLISECONDS)))
+
+(defn slow-producing-obs []
+  (rx/map inc (Observable/interval 500 TimeUnit/MILLISECONDS)))
+
+(defn back-pressure-obs []
+  (->> (rx/map vector
+               (fast-producing-obs)
+               (slow-producing-obs))
+       (rx/map (fn [[x y]]
+                 (+ x y)))
+       (rx/take 1)))
+
+(rx/subscribe (back-pressure-obs)
+              prn
+              (fn [e] (prn "error is " e)))
