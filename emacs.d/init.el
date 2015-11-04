@@ -6,6 +6,7 @@
                       projectile
                       clojure-mode
                       cider
+                      clj-refactor
                       paredit
                       rainbow-delimiters
                       company
@@ -76,8 +77,14 @@
                        nil)))
              ("\\(#\\)("                ; anon funcs 2
              (0 (progn (compose-region (match-beginning 1)
-                                       (match-end 1) "λ")
+                                       (match-end 1) "ƒ")
+                       nil)))
+            ("\\(#\\){"              ; sets
+             (0 (progn (compose-region (match-beginning 1)
+                                       (match-end 1) "∈")
                        nil)))
              )))))
-
 (add-hook 'after-init-hook 'my-replace-symbol)
+
+;;; edit config file
+(global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "~/.emacs.d/init.el")))
