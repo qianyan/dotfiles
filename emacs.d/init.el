@@ -17,12 +17,26 @@
     (package-install p)))
 
 (add-to-list 'exec-path "/usr/local/bin")
+;;; set PATH to emacs shell
+(setenv "PATH"
+        (concat
+         (getenv "PATH")
+         ":"
+         "/usr/local/bin"))
 
 ;;; format & full screen
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
 (custom-set-variables
-  '(initial-frame-alist (quote ((fullscreen . maximized)))))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
+ '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
 ;; paredit mode
 (require 'paredit)
@@ -58,12 +72,13 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
-
-(require 'parenface)
-(set-face-foreground 'paren-face "DimGray")
+(require 'color-theme-sanityinc-solarized)
+(load-theme 'sanityinc-solarized-dark)
+;;(require 'parenface)
+;;(set-face-foreground 'paren-face "DimGray")
 ;;;2A2A2A
-(set-foreground-color "ivory")
-(set-background-color "#2A2A2A")
+;;(set-foreground-color "ivory")
+;;(set-background-color "#2A2A2A")
 (set-default-font "Inconsolata 14")
 
 (defun my-replace-symbol ()
@@ -88,3 +103,26 @@
 
 ;;; edit config file
 (global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "~/.emacs.d/init.el")))
+
+(add-to-list 'load-path "/Users/qianyan/.emacs.d/neotree")
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
+;;; specific for per project
+(require 'clojure-mode)
+
+(define-clojure-indent
+  (defroutes 'defun)
+  (GET 2)
+  (POST 2)
+  (PUT 2)
+  (DELETE 2)
+  (HEAD 2)
+  (ANY 2)
+  (context 2))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
