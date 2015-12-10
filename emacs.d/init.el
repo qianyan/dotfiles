@@ -1,5 +1,12 @@
 (require 'package)
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+
+(setq package-archives '(("melpa" . "http://melpa.org/packages/")
+                         ("melpa-stable" . "https://stable.melpa.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("elpy" . "http://jorgenschaefer.github.io/packages/")
+                         ("gnu" . "http://elpa.gnu.org/packages/"))
+      package-enable-at-startup nil)
+
 (package-initialize)
 
 (defvar my-packages '(better-defaults
@@ -10,6 +17,7 @@
                       paredit
                       rainbow-delimiters
                       company
+                      ido-vertical-mode
                       find-file-in-project))
 
 (dolist (p my-packages)
@@ -36,7 +44,12 @@
  '(custom-safe-themes
    (quote
     ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
- '(initial-frame-alist (quote ((fullscreen . maximized)))))
+ '(initial-frame-alist (quote ((fullscreen . maximized))))
+ '(org-agenda-files nil))
+;; cider mode
+;;(setq nrepl-log-messages nil)
+(setq cider-overlays-use-font-lock t)
+(require 'icomplete)
 
 ;; paredit mode
 (require 'paredit)
@@ -104,9 +117,10 @@
 ;;; edit config file
 (global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "~/.emacs.d/init.el")))
 
-(add-to-list 'load-path "/Users/qianyan/.emacs.d/neotree")
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
+
+;;;(add-to-list 'load-path "/Users/qianyan/.emacs.d/neotree")
+;;;(require 'neotree)
+;;;(global-set-key [f8] 'neotree-toggle)
 
 ;;; specific for per project
 (require 'clojure-mode)
@@ -126,3 +140,26 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;;; ido mode
+(require 'ido-vertical-mode)
+(ido-mode 1)
+(ido-vertical-mode 1)
+(setq ido-vertical-define-keys 'C-n-and-C-p-only)
+(setq ido-vertical-show-count t)
+(setq ido-use-faces t)
+(set-face-attribute 'ido-vertical-first-match-face nil
+                    :background "#e5b7c0")
+(set-face-attribute 'ido-vertical-only-match-face nil
+                    :background "#e52b50"
+                    :foreground "white")
+(set-face-attribute 'ido-vertical-match-face nil
+                    :foreground "#b00000")
+(ido-vertical-mode 1)
+
+;;; org-mode
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+;;; add org directory to agenda.
+(setq org-agenda-files (quote ("~/Documents/org")))
