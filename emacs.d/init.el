@@ -163,3 +163,4 @@
 (setq org-log-done t)
 ;;; add org directory to agenda.
 (setq org-agenda-files (quote ("~/Documents/org")))
+

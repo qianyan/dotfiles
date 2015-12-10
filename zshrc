@@ -15,7 +15,7 @@ ZSH_THEME="fino"
 alias glw="./gradlew"
 alias sr='source ~/.zshrc'
 alias run='./tools/ant/bin/ant'
-alias ni='nvim'
+alias vi='nvim'
 alias tm='tmux -2'
 alias -s md='subl'
 alias gon="cat .git/config | awk '/url/{print \$3}' | xargs open"
@@ -73,7 +73,7 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='mv<F37><F37><F37>im'
 # fi
 
 # Compilation flags
