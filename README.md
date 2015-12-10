@@ -1,11 +1,12 @@
 dotfiles
 ========
 
-carl's dot files
+Ryan's dot files
 
 * irssi
 * vim
 * gitconfig
+* gitignore
 * gitignore_global
 * vimrc
 * nvimrc
@@ -15,6 +16,7 @@ carl's dot files
 * vimperatorrc
 * zshrc
 * z
+* emacs.d/init.el
 
 run mksymlinks to setup
 ======
