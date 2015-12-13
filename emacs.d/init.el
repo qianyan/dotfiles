@@ -18,6 +18,7 @@
                       rainbow-delimiters
                       company
                       ido-vertical-mode
+                      zenburn-theme
                       find-file-in-project))
 
 (dolist (p my-packages)
@@ -67,13 +68,12 @@
 (add-hook 'cider-mode-hook #'rainbow-delimiters-mode)
 ;;(add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
 
+;; clj-refactor for clojure
 (require 'clj-refactor)
-
 (defun my-clojure-mode-hook ()
     (clj-refactor-mode 1)
     (yas-minor-mode 1) ; for adding require/use/import
     (cljr-add-keybindings-with-prefix "C-c C-m"))
-
 (add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
 
 (require 'company)
@@ -85,8 +85,12 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
-(require 'color-theme-sanityinc-solarized)
-(load-theme 'sanityinc-solarized-dark)
+
+;;themes
+;;(require 'color-theme-sanityinc-solarized)
+;;(load-theme 'sanityinc-solarized-dark)
+
+(load-theme 'zenburn t)
 ;;(require 'parenface)
 ;;(set-face-foreground 'paren-face "DimGray")
 ;;;2A2A2A
@@ -164,3 +168,4 @@
 ;;; add org directory to agenda.
 (setq org-agenda-files (quote ("~/Documents/org")))
 
+(global-set-key (kbd "C-c m c") 'mc/edit-lines)
