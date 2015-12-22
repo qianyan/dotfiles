@@ -46,7 +46,7 @@
    (quote
     ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
  '(initial-frame-alist (quote ((fullscreen . maximized))))
- '(org-agenda-files nil))
+ '(org-agenda-files (quote ("~/Documents/org/work.org"))))
 ;; cider mode
 ;;(setq nrepl-log-messages nil)
 (setq cider-overlays-use-font-lock t)
@@ -96,7 +96,7 @@
 ;;;2A2A2A
 ;;(set-foreground-color "ivory")
 ;;(set-background-color "#2A2A2A")
-(set-default-font "Inconsolata 14")
+(set-default-font "Inconsolata 16")
 
 (defun my-replace-symbol ()
   (dolist (mode '(clojure-mode clojurescript-mode cider-mode))
@@ -167,5 +167,7 @@
 (setq org-log-done t)
 ;;; add org directory to agenda.
 (setq org-agenda-files (quote ("~/Documents/org")))
+(setq org-todo-keywords
+  '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
 
 (global-set-key (kbd "C-c m c") 'mc/edit-lines)
