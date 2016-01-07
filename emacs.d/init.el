@@ -12,6 +12,7 @@
 (defvar my-packages '(better-defaults
                       projectile
                       clojure-mode
+                      midje-mode
                       cider
                       clj-refactor
                       paredit
@@ -63,6 +64,7 @@
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 (add-hook 'clojure-mode-hook #'enable-paredit-mode)
 (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'clojure-mode-hook #'midje-mode)
 
 (require 'rainbow-delimiters)
 (add-hook 'cider-mode-hook #'rainbow-delimiters-mode)

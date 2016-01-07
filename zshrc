@@ -81,11 +81,12 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
 export ANDROID_HOME=/Users/qianyan/bin/android-sdk-macosx
+export JBAKE_HOME=/Users/qianyan/bin/jbake-2.5.0-SNAPSHOT
+export POSTGRE_HOME=/Applications/Postgres.app/Contents/Versions/9.3
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin:$JBAKE_HOME/bin:$POSTGRE_HOME/bin" 
+# Add RVM to PATH for scripting
 source $HOME/.rvm/scripts/rvm
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
