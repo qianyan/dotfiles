@@ -81,7 +81,6 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-export ANDROID_HOME=/Users/qianyan/bin/android-sdk-macosx
 export JBAKE_HOME=/Users/qianyan/bin/jbake-2.5.0-SNAPSHOT
 export POSTGRE_HOME=/Applications/Postgres.app/Contents/Versions/9.3
 
@@ -93,3 +92,4 @@ export LANG=en_US.UTF-8
 export NVM_DIR=~/.nvm
 source /usr/local/opt/nvm/nvm.sh
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
+PATH=/Users/qianyan/.nvm/v0.10.30/bin:/Users/qianyan/.rvm/gems/ruby-1.9.3-p547/bin:/Users/qianyan/.rvm/gems/ruby-1.9.3-p547@global/bin:/Users/qianyan/.rvm/rubies/ruby-1.9.3-p547/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/qianyan/.rvm/bin:/Users/qianyan/bin/jbake-2.5.0-SNAPSHOT/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin:~/bin
