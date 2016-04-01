@@ -90,9 +90,9 @@
 
 ;;themes
 ;;(require 'color-theme-sanityinc-solarized)
-;;(load-theme 'sanityinc-solarized-dark)
+(load-theme 'sanityinc-solarized-dark)
 
-(load-theme 'zenburn t)
+;;(load-theme 'zenburn t)
 ;;(require 'parenface)
 ;;(set-face-foreground 'paren-face "DimGray")
 ;;;2A2A2A

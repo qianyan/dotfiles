@@ -14,7 +14,7 @@ colorscheme solarized_dark
 
 set focuscontent
 set visualbell
-nnoremap e : js __readable_by_evernote.context_menu__call()<CR>
+"nnoremap e : js __readable_by_evernote.context_menu__call()<CR>
 " vim: set ft=vimperator:
 
 " setup proxy user command

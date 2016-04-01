@@ -33,4 +33,5 @@ for file in $files; do
 done
 
 # example
+# if the file has not been listed in this folder, please run `dotfile .vimrc` first
 # ~/dotfiles/vimrc -> ~/.vimrc

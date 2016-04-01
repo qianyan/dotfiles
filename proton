@@ -59,6 +59,7 @@
   [
     ;; :pigments
     :atom-beautify
+    :lisp-paredit
     :react
   ]
 
