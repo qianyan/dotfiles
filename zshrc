@@ -80,6 +80,16 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+function code {  
+    if [[ $# = 0 ]]
+    then
+        open -a "Visual Studio Code"
+    else
+        local argPath="$1"
+        [[ $1 = /* ]] && argPath="$1" || argPath="$PWD/${1#./}"
+        open -a "Visual Studio Code" "$argPath"
+    fi
+}
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 export JBAKE_HOME=/Users/qianyan/bin/jbake-2.5.0-SNAPSHOT
