@@ -20,6 +20,11 @@
                       company
                       ido-vertical-mode
                       zenburn-theme
+                      monokai-theme
+                      idea-darkula-theme
+                      jazz-theme
+                      planet-theme
+                      obsidian-theme
                       find-file-in-project))
 
 (dolist (p my-packages)
@@ -89,10 +94,16 @@
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
 ;;themes
-;;(require 'color-theme-sanityinc-solarized)
-(load-theme 'sanityinc-solarized-dark)
+;;(load-theme 'sanityinc-solarized-dark)
 
 ;;(load-theme 'zenburn t)
+
+;;(load-theme 'monokai t)
+(load-theme 'idea-darkula t)
+;;(load-theme 'jazz t)
+;;(load-theme 'planet t)
+;;(load-theme 'obsidian t)
+
 ;;(require 'parenface)
 ;;(set-face-foreground 'paren-face "DimGray")
 ;;;2A2A2A
