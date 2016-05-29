@@ -25,7 +25,8 @@
                       jazz-theme
                       planet-theme
                       obsidian-theme
-                      find-file-in-project))
+                      find-file-in-project
+                      kibit-helper))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -90,16 +91,16 @@
 ;; open recent file
 (require 'recentf)
 (recentf-mode 1)
-(setq recentf-max-menu-items 25)
+(setq recentf-max-menu-items 10)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
 ;;themes
 ;;(load-theme 'sanityinc-solarized-dark)
 
-;;(load-theme 'zenburn t)
+(load-theme 'zenburn t)
 
 ;;(load-theme 'monokai t)
-(load-theme 'idea-darkula t)
+;;(load-theme 'idea-darkula t)
 ;;(load-theme 'jazz t)
 ;;(load-theme 'planet t)
 ;;(load-theme 'obsidian t)
@@ -173,11 +174,16 @@
                     :foreground "#b00000")
 (ido-vertical-mode 1)
 
+;;; unit tests
+;;; (setq cider-test-show-report-on-success t) ; whatever it fails or success, show report anyway.
+(cider-auto-test-mode 1)
+
 ;;; org-mode
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
+
 ;;; add org directory to agenda.
 (setq org-agenda-files (quote ("~/Documents/org")))
 (setq org-todo-keywords
