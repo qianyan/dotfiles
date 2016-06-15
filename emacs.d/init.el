@@ -27,7 +27,8 @@
                       obsidian-theme
                       find-file-in-project
                       kibit-helper
-                      highlight-symbol))
+                      highlight-symbol
+                      helm-ag))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -85,9 +86,13 @@
     (cljr-add-keybindings-with-prefix "C-c C-m"))
 (add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
 
+;;; cider
 (require 'company)
 (add-hook 'cider-repl-mode-hook #'company-mode)
 (add-hook 'cider-mode-hook #'company-mode)
+
+;; Replace return key with newline-and-indent when in cider mode.
+(add-hook 'cider-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent
 
 ;; open recent file
 (require 'recentf)
