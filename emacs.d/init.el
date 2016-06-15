@@ -26,7 +26,8 @@
                       planet-theme
                       obsidian-theme
                       find-file-in-project
-                      kibit-helper))
+                      kibit-helper
+                      highlight-symbol))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -94,12 +95,19 @@
 (setq recentf-max-menu-items 10)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
+;;; highlight symbols
+(require 'highlight-symbol)
+(global-set-key [(control f3)] 'highlight-symbol)
+(global-set-key [f3] 'highlight-symbol-next)
+(global-set-key [(shift f3)] 'highlight-symbol-prev)
+(global-set-key [(meta f3)] 'highlight-symbol-query-replace)
+
 ;;themes
 ;;(load-theme 'sanityinc-solarized-dark)
 
-(load-theme 'zenburn t)
+;;(load-theme 'zenburn t)
 
-;;(load-theme 'monokai t)
+(load-theme 'monokai t)
 ;;(load-theme 'idea-darkula t)
 ;;(load-theme 'jazz t)
 ;;(load-theme 'planet t)
@@ -176,7 +184,7 @@
 
 ;;; unit tests
 ;;; (setq cider-test-show-report-on-success t) ; whatever it fails or success, show report anyway.
-(cider-auto-test-mode 1)
+;(cider-auto-test-mode 1)
 
 ;;; org-mode
 (require 'org)
@@ -189,4 +197,8 @@
 (setq org-todo-keywords
   '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
 
-(global-set-key (kbd "C-c m c") 'mc/edit-lines)
+;;; multiple cursors
+(global-set-key (kbd "C-M") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
