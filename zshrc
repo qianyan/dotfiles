@@ -57,14 +57,11 @@ alias gon="cat .git/config | awk '/url/{print \$3}' | xargs open"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mercurial svn z osx lein colored-man zsh-syntax-highlighting)
+plugins=(git mercurial svn z osx lein colored-man zsh-syntax-highlighting emacs)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.svn_support.sh
 # User configuration
-
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -94,8 +91,6 @@ function code {
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 export JBAKE_HOME=/Users/qianyan/bin/jbake-2.5.0-SNAPSHOT
 export POSTGRE_HOME=/Applications/Postgres.app/Contents/Versions/9.3
-
-export PATH="$PATH:$HOME/.rvm/bin:$JBAKE_HOME/bin:$POSTGRE_HOME/bin" 
 # Add RVM to PATH for scripting
 source $HOME/.rvm/scripts/rvm
 export LC_ALL=en_US.UTF-8  
@@ -103,6 +98,4 @@ export LANG=en_US.UTF-8
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
-PATH=/Users/qianyan/.rvm/gems/ruby-1.9.3-p547/bin:/Users/qianyan/.rvm/gems/ruby-1.9.3-p547@global/bin:/Users/qianyan/.rvm/rubies/ruby-1.9.3-p547/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/qianyan/.rvm/bin:/Users/qianyan/bin/jbake-2.5.0-SNAPSHOT/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin:~/bin
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+PATH=/usr/local/Cellar/emacs/24.5/bin:/Users/qianyan/.rvm/gems/ruby-1.9.3-p547/bin:/Users/qianyan/.rvm/gems/ruby-1.9.3-p547@global/bin:/Users/qianyan/.rvm/rubies/ruby-1.9.3-p547/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/qianyan/.rvm/bin:/Users/qianyan/bin/jbake-2.5.0-SNAPSHOT/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin:~/bin
