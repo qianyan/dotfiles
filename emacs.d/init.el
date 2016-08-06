@@ -28,7 +28,8 @@
                       find-file-in-project
                       kibit-helper
                       highlight-symbol
-                      helm-ag))
+                      helm-ag
+                      helm-themes))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -108,6 +109,8 @@
 (global-set-key [(meta f3)] 'highlight-symbol-query-replace)
 
 ;;themes
+(require 'helm-config)
+(require 'helm-themes)
 ;;(load-theme 'sanityinc-solarized-dark)
 
 ;;(load-theme 'zenburn t)
@@ -207,3 +210,9 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;;; switch windows with SHIFT + ARROW
+(progn
+  (require 'windmove)
+  (windmove-default-keybindings)
+  (setq windmove-wrap-around t))
