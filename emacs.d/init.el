@@ -93,8 +93,7 @@
 (add-hook 'cider-mode-hook #'company-mode)
 
 ;; Replace return key with newline-and-indent when in cider mode.
-(add-hook 'cider-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent
-
+(add-hook 'cider-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
 ;; open recent file
 (require 'recentf)
 (recentf-mode 1)
