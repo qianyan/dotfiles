@@ -1,3 +1,27 @@
+;;; support copy to clipboard in terminal
+(defun copy-to-clipboard ()
+  "Copies selection to x-clipboard."
+  (interactive)
+  (if (display-graphic-p)
+      (progn
+        (message "Yanked region to x-clipboard!")
+        (call-interactively 'clipboard-kill-ring-save))
+    (if (region-active-p)
+        (progn
+          (shell-command-on-region (region-beginning) (region-end) "pbcopy")
+          (message "Yanked region to clipboard!")
+          (deactivate-mark))
+      (message "No region active; can't yank to clipboard!"))))
+
+(defun paste-from-clipboard ()
+  "Pastes from x-clipboard."
+  (interactive)
+  (if (display-graphic-p)
+      (progn
+        (clipboard-yank)
+        (message "graphics active"))
+    (insert (shell-command-to-string "pbpaste"))))
+
 (defun air--config-evil-leader ()
   "Configure evil leader mode."
   (evil-leader/set-leader ",")
@@ -19,7 +43,7 @@
     "nn" 'air-narrow-dwim       ;; Narrow to region and enter normal mode
     "nw" 'widen
     "o"  'delete-other-windows  ;; C-w o
-    "p"  'helm-show-kill-ring
+    "k"  'helm-show-kill-ring
     "s"  'ag-project            ;; Ag search from project's root
     "r"  'chrome-reload
     "R"  (lambda () (interactive) (font-lock-fontify-buffer) (redraw-display))
@@ -28,10 +52,11 @@
     "T"  'gtags-find-tag
     "w"  'save-buffer
     "x"  'helm-M-x
-    "y"  'yank-to-x-clipboard)
+    "p"  'paste-from-clipboard
+    "y"  'copy-to-clipboard)
 
   (defun magit-blame-toggle ()
-    "Toggle magit-blame-mode on and off interactively."
+    "toggle magit-blame-mode on and off interactively."
     (interactive)
     (if (and (boundp 'magit-blame-mode) magit-blame-mode)
         (magit-blame-quit)
