@@ -95,6 +95,7 @@
 
   ;; Global bindings.
   (define-key evil-normal-state-map (kbd "<down>")  'evil-next-visual-line)
+  (define-key evil-normal-state-map (kbd ";")  'evil-ex)
   (define-key evil-normal-state-map (kbd "<up>")    'evil-previous-visual-line)
   (define-key evil-normal-state-map (kbd "-")       'helm-find-files)
   (define-key evil-normal-state-map (kbd "C-]")     'gtags-find-tag-from-here)
