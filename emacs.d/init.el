@@ -111,6 +111,7 @@
 (require 'init-powerline)
 (require 'init-evil)
 (require 'init-themes)
+(require 'init-haskell)
 
 (defun my-replace-symbol ()
   (dolist (mode '(clojure-mode clojurescript-mode cider-mode))
