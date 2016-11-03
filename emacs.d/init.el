@@ -103,6 +103,37 @@
   (setq nlinum-relative-redisplay-delay 0)
   (add-hook 'prog-mode-hook #'nlinum-relative-mode))
 
+(use-package prodigy
+  :ensure t
+  :commands (prodigy)
+  :bind* (("M-m s b" . prodigy))
+  :init
+  (prodigy-define-tag
+    :name 'blog
+    :ready-message "Serving blog. Ctrl-C to shutdown server")
+  (prodigy-define-service
+    :name "hexo generate"
+    :command "hexo"
+    :args '("g")
+    :cwd "~/Sync/blog"
+    :tags '(blog)
+    :kill-signal 'sigkill)
+  (prodigy-define-service
+    :name "hexo serve"
+    :command "hexo"
+    :args '("s")
+    :cwd "~/Sync/blog"
+    :tags '(blog)
+    :kill-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+  (prodigy-define-service
+    :name "hexo deploy"
+    :command "hexo"
+    :args '("d")
+    :cwd "~/Sync/blog"
+    :tags '(blog)
+    :kill-signal 'sigkill))
+
 (require 'icomplete)
 (require 'init-paredit)
 (require 'init-clojure-cider)
