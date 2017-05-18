@@ -85,16 +85,17 @@
   :defer t
   :config (global-company-mode))
 
-(use-package ace-jump-mode
-  :ensure t
-  :bind ("C-c C-SPC" . ace-jump-mode))
-
 (use-package helm-ag
   :ensure t)
 
 (use-package helm-themes
   :ensure t
   :config (load-theme 'monokai t))
+
+(use-package avy
+  :ensure t
+  :bind ("C-," . avy-goto-char)
+        ("C-'" . avy-goto-char-2))
 
 (use-package nlinum-relative
   :ensure t
@@ -143,6 +144,7 @@
 (require 'init-evil)
 (require 'init-themes)
 (require 'init-haskell)
+(require 'init-markdown)
 
 (defun my-replace-symbol ()
   (dolist (mode '(clojure-mode clojurescript-mode cider-mode))
@@ -213,7 +215,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/Documents/org/work.org"))))
+ '(cider-boot-parameters "repl -s wait")
+ '(org-agenda-files (quote ("~/Documents/org/work.org")))
+ '(package-selected-packages
+   (quote
+    (avy zenburn-theme xclip use-package tiny-menu smex scpaste rainbow-delimiters projectile prodigy powerline-evil planet-theme parenface obsidian-theme nlinum-relative monokai-theme midje-mode markdown-mode magit kibit-helper key-chord jazz-theme ido-vertical-mode ido-ubiquitous idle-highlight-mode idea-darkula-theme highlight-symbol helm-themes helm-ag haskell-mode find-file-in-project exec-path-from-shell evil-surround evil-leader evil-indent-textobject color-theme-sanityinc-solarized color-theme-monokai clojure-mode-extra-font-locking clj-refactor better-defaults ace-jump-mode ac-alchemist abc-mode)))
+ '(safe-local-variable-values
+   (quote
+    ((cider-cljs-lein-repl . "(do (user/run) (user/browser-repl))")
+     (cider-refresh-after-fn . "reloaded.repl/go")
+     (cider-refresh-before-fn . "reloaded.repl/stop")))))
 
 ;;; global set
 (global-set-key (kbd "M-f") 'toggle-frame-fullscreen)
@@ -243,3 +254,4 @@
           (if (= (user-uid) 0) " # " " $ ")))
 
 (setq eshell-prompt-function 'rjs-eshell-prompt-function)
+(put 'set-goal-column 'disabled nil)
