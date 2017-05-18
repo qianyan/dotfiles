@@ -241,12 +241,12 @@ is not used."
   (use-package evil-indent-textobject
     :ensure t)
 
-  (use-package key-chord
-    :ensure t
-    :config
-    (setq key-chord-two-keys-delay 0.5)
-    (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-    (key-chord-mode 1))
+  ;; (use-package key-chord
+  ;;   :ensure t
+  ;;   :config
+  ;;   (setq key-chord-two-keys-delay 0.5)
+  ;;   (key-chord-define evil-insert-state-map "ctrl-n" 'evil-normal-state)
+  ;;   (key-chord-mode 1))
 
   (air--apply-evil-other-package-configs))
 
