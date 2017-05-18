@@ -95,7 +95,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'klen/python-mode'
 Plugin 'myhere/vim-nodejs-complete'
 Plugin 'majutsushi/tagbar'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-surround'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'altercation/vim-colors-solarized'
@@ -104,6 +104,7 @@ Plugin 'jponge/vim-golo'
 Plugin 'lambdalisue/nodeunit.vim'
 Plugin 'reinh/vim-makegreen'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'easymotion/vim-easymotion'
 call vundle#end()
 
 "colorscheme tomorrow

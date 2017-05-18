@@ -13,8 +13,10 @@ ZSH_THEME="fino"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias glw="./gradlew"
+alias mw="./mvnw"
 alias vi='nvim'
 alias tm='tmux -2'
+alias fire='python -m SimpleHTTPServer'
 alias gon="cat .git/config | awk '/url/{print \$3}' | xargs open"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -93,4 +95,8 @@ source $HOME/.rvm/scripts/rvm
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
-PATH=/Users/qianyan/.rvm/gems/ruby-1.9.3-p547/bin:~/bin:$PATH
+PATH=~/bin:$PATH
+export TOMCAT_HOME=/usr/local/Cellar/tomcat@8.0/8.0.39/libexec
+
+export https_proxy=http://127.0.0.1:9999;export http_proxy=http://127.0.0.1:9999
+
