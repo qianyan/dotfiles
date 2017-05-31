@@ -21,7 +21,7 @@ inoremap jk <ESC>
 " ; => :
 nnoremap ; :
 
-let mapleader = ','
+let mapleader = '\'
 
 nnoremap <silent><leader>ev :vsp $MYVIMRC<CR>
 
@@ -35,9 +35,12 @@ tnoremap <esc> <C-\><C-n>
 "tnoremap <C-k> <C-\><C-n><C-w>k
 "tnoremap <C-l> <C-\><C-n><C-w>l
 " split terminal
-cnoremap ts split term://$SHELL \| startinsert
-cnoremap tv vsp term://$SHELL \| startinsert
-
+cnoremap st split term://$SHELL \| startinsert
+cnoremap vt vsp term://$SHELL \| startinsert
+" autocomplete menu provided by zsh, then <C-n> <C-p> to scroll forward and
+" backword
+set wildmenu
+set wildmode=full
 " insert ["] before and after current text.
 nnoremap <silent><leader>" viw<esc>a"<esc>hbi"<esc>lel nnoremap
 nnoremap <silent><leader>' viw<esc>a'<esc>hbi'<esc>lel
