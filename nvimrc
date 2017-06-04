@@ -35,8 +35,8 @@ tnoremap <esc> <C-\><C-n>
 "tnoremap <C-k> <C-\><C-n><C-w>k
 "tnoremap <C-l> <C-\><C-n><C-w>l
 " split terminal
-cnoremap st split term://$SHELL \| startinsert
-cnoremap vt vsp term://$SHELL \| startinsert
+cnoremap ts split term://$SHELL \| startinsert
+cnoremap tv vsp term://$SHELL \| startinsert
 " autocomplete menu provided by zsh, then <C-n> <C-p> to scroll forward and
 " backword
 set wildmenu
@@ -67,7 +67,7 @@ set expandtab      " blackspace instead of tab
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-set nu
+
 
 set splitright
 set splitbelow
@@ -98,23 +98,36 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'klen/python-mode'
 Plugin 'myhere/vim-nodejs-complete'
 Plugin 'majutsushi/tagbar'
-"Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-surround'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'freeo/vim-kalisi'
-Plugin 'jponge/vim-golo'
 Plugin 'lambdalisue/nodeunit.vim'
 Plugin 'reinh/vim-makegreen'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'tomlion/vim-solidity'
+Plugin 'scrooloose/syntastic'
 call vundle#end()
+filetype plugin indent on
+
+" syntastic
+"
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_solidity_checkers = ['solc', 'solium']
 
 "colorscheme tomorrow
 syntax enable
 set updatetime=750
 set background=dark
-colorscheme kalisi
+colorscheme molokai
 
 let g:gitgutter_realtime = 1
 set nobackup		" do not keep a backup file 
