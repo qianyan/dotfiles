@@ -48,6 +48,11 @@ nnoremap <silent><leader>" viw<esc>a"<esc>hbi"<esc>lel nnoremap
 nnoremap <silent><leader>' viw<esc>a'<esc>hbi'<esc>lel
 nnoremap <leader>t :MakeGreen %<CR>
 " }}
+" trave buffer
+nnoremap <silent> [b :bprevious<CR> 
+nnoremap <silent> ]b :bnext<CR> 
+nnoremap <silent> [B :bfirst<CR> 
+nnoremap <silent> ]B :blast<CR>
 
 let g:makegreen_stay_on_file = 1
 au BufNewFile,BufRead *.js set filetype=javascript
