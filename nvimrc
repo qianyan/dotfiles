@@ -37,6 +37,8 @@ tnoremap <esc> <C-\><C-n>
 " split terminal
 cnoremap ts split term://$SHELL \| startinsert
 cnoremap tv vsp term://$SHELL \| startinsert
+" true color
+set termguicolors
 " autocomplete menu provided by zsh, then <C-n> <C-p> to scroll forward and
 " backword
 set wildmenu
@@ -68,6 +70,8 @@ set expandtab      " blackspace instead of tab
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+" relative number
+set relativenumber
 
 set splitright
 set splitbelow
