@@ -17,7 +17,7 @@ endif
 
 " {{ shortcuts
 " jk => esc
-inoremap jk <ESC>
+"inoremap jk <ESC>
 " ; => :
 nnoremap ; :
 
@@ -30,7 +30,7 @@ nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 " terminal normal mapping
 tnoremap jk <C-\><C-n>
 tnoremap <esc> <C-\><C-n>
-"tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-w><C-h> <C-\><C-n><C-w>h
 "tnoremap <C-j> <C-\><C-n><C-w>j
 "tnoremap <C-k> <C-\><C-n><C-w>k
 "tnoremap <C-l> <C-\><C-n><C-w>l
@@ -108,6 +108,7 @@ Plugin 'klen/python-mode'
 Plugin 'myhere/vim-nodejs-complete'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-surround'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'freeo/vim-kalisi'
@@ -117,6 +118,10 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tomlion/vim-solidity'
 Plugin 'scrooloose/syntastic'
+" for golang
+Plugin 'fatih/vim-go'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'suan/vim-instant-markdown'
 call vundle#end()
 filetype plugin indent on
 
@@ -128,7 +133,7 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_solidity_checkers = ['solc', 'solium']
 
