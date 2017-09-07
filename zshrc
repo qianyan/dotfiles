@@ -56,7 +56,7 @@ alias gon="cat .git/config | awk '/url/{print \$3}' | xargs open"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git z lein zsh-syntax-highlighting emacs)
+plugins=(git z zsh-syntax-highlighting emacs zsh-autosuggestions lein)
 
 source $ZSH/oh-my-zsh.sh
 # User configuration
@@ -100,3 +100,7 @@ export TOMCAT_HOME=/usr/local/Cellar/tomcat@8.0/8.0.39/libexec
 
 export https_proxy=http://127.0.0.1:9999;export http_proxy=http://127.0.0.1:9999
 
+
+# tabtab source for jhipster package
+# uninstall by removing these lines or running `tabtab uninstall jhipster`
+[[ -f /Users/qianyan/.config/yarn/global/node_modules/tabtab/.completions/jhipster.zsh ]] && . /Users/qianyan/.config/yarn/global/node_modules/tabtab/.completions/jhipster.zsh
