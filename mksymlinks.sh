@@ -9,7 +9,7 @@
 dir=~/dotfiles                    # dotfiles directory
 old_dir=~/dotfiles_old             # old dotfiles backup directory
 files=
-"vimrc nvimrc zshrc bashrc gitconfig gitignore_global gitignore irssi vimperatorrc emacs.d/init.el proton"
+"vimrc nvimrc zshrc bashrc gitconfig gitignore_global gitignore irssi vimperatorrc emacs.d/init.el config/nvim/init.vim"
 # list of files/folders to symlink in homedir
 
 ##########
