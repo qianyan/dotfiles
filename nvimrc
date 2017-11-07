@@ -121,7 +121,7 @@ Plugin 'scrooloose/syntastic'
 " for golang
 Plugin 'fatih/vim-go'
 Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'suan/vim-instant-markdown'
+Plugin 'euclio/vim-markdown-composer'
 call vundle#end()
 filetype plugin indent on
 
