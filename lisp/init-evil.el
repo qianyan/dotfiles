@@ -250,4 +250,8 @@ is not used."
 
   (air--apply-evil-other-package-configs))
 
+;;; disable evil in help mode
+(evil-set-initial-state 'help-mode 'emacs)
+(evil-set-initial-state 'cider-repl-mode 'emacs) 
+
 (provide 'init-evil)

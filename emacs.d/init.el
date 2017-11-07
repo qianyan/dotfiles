@@ -227,7 +227,7 @@
      (cider-refresh-before-fn . "reloaded.repl/stop")))))
 
 ;;; global set
-(global-set-key (kbd "M-f") 'toggle-frame-fullscreen)
+(global-set-key (kbd "C-M-=") 'toggle-frame-fullscreen)
 (let ((no-border '(internal-border-width . 0)))
   (add-to-list 'default-frame-alist no-border)
   (add-to-list 'initial-frame-alist no-border))
