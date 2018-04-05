@@ -1,10 +1,7 @@
 (require 'package)
 
-(setq package-archives '(("melpa" . "http://melpa.org/packages/")
-                         ("melpa-stable" . "https://stable.melpa.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("elpy" . "http://jorgenschaefer.github.io/packages/")
-                         ("gnu" . "http://elpa.gnu.org/packages/"))
+(setq package-archives '(("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/") )
       package-enable-at-startup nil)
 
 (package-initialize)
@@ -90,7 +87,7 @@
 
 (use-package helm-themes
   :ensure t
-  :config (load-theme 'monokai t))
+  :config (load-theme 'misterioso t))
 
 (use-package avy
   :ensure t
@@ -196,7 +193,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (put 'narrow-to-region 'disabled nil)
-(set-default-font "Inconsolata 16")
+(set-default-font "Source Code Pro 16")
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -219,7 +216,7 @@
  '(org-agenda-files (quote ("~/Documents/org/work.org")))
  '(package-selected-packages
    (quote
-    (avy zenburn-theme xclip use-package tiny-menu smex scpaste rainbow-delimiters projectile prodigy powerline-evil planet-theme parenface obsidian-theme nlinum-relative monokai-theme midje-mode markdown-mode magit kibit-helper key-chord jazz-theme ido-vertical-mode ido-ubiquitous idle-highlight-mode idea-darkula-theme highlight-symbol helm-themes helm-ag haskell-mode find-file-in-project exec-path-from-shell evil-surround evil-leader evil-indent-textobject color-theme-sanityinc-solarized color-theme-monokai clojure-mode-extra-font-locking clj-refactor better-defaults ace-jump-mode ac-alchemist abc-mode)))
+    (p avy zenburn-theme xclip use-package tiny-menu smex scpaste rainbow-delimiters projectile prodigy powerline-evil planet-theme parenface obsidian-theme nlinum-relative monokai-theme midje-mode markdown-mode magit kibit-helper key-chord jazz-theme ido-vertical-mode ido-ubiquitous idle-highlight-mode idea-darkula-theme highlight-symbol helm-themes helm-ag haskell-mode find-file-in-project exec-path-from-shell evil-surround evil-leader evil-indent-textobject color-theme-sanityinc-solarized color-theme-monokai clojure-mode-extra-font-locking better-defaults ace-jump-mode ac-alchemist abc-mode)))
  '(safe-local-variable-values
    (quote
     ((cider-cljs-lein-repl . "(do (user/run) (user/browser-repl))")
