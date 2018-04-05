@@ -87,7 +87,7 @@
 
 (use-package helm-themes
   :ensure t
-  :config (load-theme 'misterioso t))
+  :config (load-theme 'monokai t))
 
 (use-package avy
   :ensure t
