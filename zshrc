@@ -14,6 +14,7 @@ ZSH_THEME="fino"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias glw="./gradlew"
 alias mw="./mvnw"
+alias dk="docker"
 alias vi='nvim'
 alias tm='tmux -2'
 alias fire='python -m SimpleHTTPServer'
@@ -94,13 +95,31 @@ export LANG=en_US.UTF-8
 source $HOME/.rvm/scripts/rvm
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
-PATH=~/bin:$PATH
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home
+PATH=~/bin:$JAVA_HOME/bin:$PATH
 export TOMCAT_HOME=/usr/local/Cellar/tomcat@8.0/8.0.39/libexec
 
-export https_proxy=http://127.0.0.1:9999;export http_proxy=http://127.0.0.1:9999
+## zplug
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    else
+        echo
+    fi
+fi
 
+zplug load
+
+## pure prompt
+autoload -U promptinit; promptinit
+prompt pure
 
 # tabtab source for jhipster package
 # uninstall by removing these lines or running `tabtab uninstall jhipster`
 [[ -f /Users/qianyan/.config/yarn/global/node_modules/tabtab/.completions/jhipster.zsh ]] && . /Users/qianyan/.config/yarn/global/node_modules/tabtab/.completions/jhipster.zsh
+#export https_proxy=http://127.0.0.1:6152;export http_proxy=http://127.0.0.1:6152
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
