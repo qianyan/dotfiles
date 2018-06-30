@@ -117,7 +117,6 @@ Plugin 'reinh/vim-makegreen'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tomlion/vim-solidity'
-Plugin 'scrooloose/syntastic'
 " for golang
 Plugin 'fatih/vim-go'
 Plugin 'AndrewRadev/splitjoin.vim'
@@ -125,18 +124,9 @@ Plugin 'euclio/vim-markdown-composer'
 call vundle#end()
 filetype plugin indent on
 
-" syntastic
-"
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_solidity_checkers = ['solc', 'solium']
-let g:syntastic_javascript_checkers = ['eslint']
+" python
+let g:python_host_prog  = '/usr/local/bin/python'                                  
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 "colorscheme tomorrow
 syntax enable
