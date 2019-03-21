@@ -16,8 +16,8 @@ alias glw="./gradlew"
 alias mw="./mvnw"
 alias dk="docker"
 alias vi='nvim'
-alias tm='tmux -2'
-alias fire='python -m SimpleHTTPServer'
+#alias tm='tmux -2'
+#alias fire='python -m SimpleHTTPServer'
 alias gon="cat .git/config | awk '/url/{print \$3}' | xargs open"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -57,7 +57,7 @@ alias gon="cat .git/config | awk '/url/{print \$3}' | xargs open"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git z zsh-syntax-highlighting emacs zsh-autosuggestions lein)
+plugins=(git z zsh-syntax-highlighting emacs zsh-autosuggestions lein kubectl)
 
 source $ZSH/oh-my-zsh.sh
 # User configuration
@@ -92,34 +92,27 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Add RVM to PATH for scripting
-source $HOME/.rvm/scripts/rvm
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
+function rvm {
+  echo "🚨 RVM not loaded! Loading now..."
+  [ -s "$HOME/.rvm/scripts/rvm" ] && . "$HOME/.rvm/scripts/rvm"
+}
+
+function nvm {
+  echo "🚨 NVM not loaded! Loading now..."
+  unset -f nvm
+  export NVM_PREFIX=$(brew --prefix nvm)
+  export NVM_DIR=~/.nvm
+  [ -s "$NVM_PREFIX/nvm.sh" ] && . "$NVM_PREFIX/nvm.sh"
+  nvm "$@"
+}
 #export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home
 PATH=~/bin:$JAVA_HOME/bin:$PATH
 export TOMCAT_HOME=/usr/local/Cellar/tomcat@8.0/8.0.39/libexec
-
-## zplug
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    else
-        echo
-    fi
-fi
-
-zplug load
-
-## pure prompt
-autoload -U promptinit; promptinit
-prompt pure
+export ANDROID_HOME=~/bin/
 
 # tabtab source for jhipster package
 # uninstall by removing these lines or running `tabtab uninstall jhipster`
 [[ -f /Users/qianyan/.config/yarn/global/node_modules/tabtab/.completions/jhipster.zsh ]] && . /Users/qianyan/.config/yarn/global/node_modules/tabtab/.completions/jhipster.zsh
 #export https_proxy=http://127.0.0.1:6152;export http_proxy=http://127.0.0.1:6152
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export PATH="/usr/local/opt/mysql-client/bin:$GOPATH/bin:$ANDROID_HOME/tools/bin:$PATH"
+export LD_LIBRARY_PATH=/usr/local/lib
