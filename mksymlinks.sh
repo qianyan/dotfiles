@@ -29,12 +29,12 @@ for file in $files; do
     echo "Moving old [.$file] from home directory to $old_dir"
     mv ~/.$file $old_dir
     echo "Creating [.$file] symlink in home directory."
-    if [ `echo $file | grep -c '/'` -gt 0 ]; then
-        filename=`echo $file | sed -n 's/.*\/\(.*\..*\)/\1/p'` # extract filename from paths. i.e. emacs.d/init.el -> init.el
-        ln -s $dir/$file ~/.$filename # ~/dotfiles/emacs.d/init.el -> ~/.init.el
-    else
-        ln -s $dir/$file ~/.$file # ~/dotfiles/vimrc -> ~/.vimrc
+    if [ `echo $file | grep -c '/'` -gt 0 ]; then # if it has path like emacs.d/init.el
+        paths=`echo $file | sed -n 's/\(.*\)\/.*\..*/\1/p'` # extract paths. i.e. emacs.d/init.el -> emacs.d
+        echo "mkdir paths for ~/.$paths"
+        mkdir -p ~/.$paths
     fi
+    ln -s $dir/$file ~/.$file # ~/dotfiles/vimrc -> ~/.vimrc or ~/dotfiles/emacs.d/init.el -> ~/.emacs.d/init.el
 done
 
 # example
