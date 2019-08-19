@@ -14,7 +14,7 @@ files="vimrc nvimrc zshrc bashrc gitconfig gitignore_global gitignore irssi vimp
 ##########
 
 # create dotfiles_old in homedir
-echo "Creating $old_dir for backup of any existing dotfiles in ~"
+echo "Creating $old_dir for backup of any existing dotfiles in home directory"
 mkdir -p $old_dir
 echo "...done"
 
@@ -25,10 +25,16 @@ echo "...done"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
+    # backup old dot files
     echo "Moving old [.$file] from home directory to $old_dir"
     mv ~/.$file $old_dir
     echo "Creating [.$file] symlink in home directory."
-    ln -s $dir/$file ~/.$file
+    if [ `echo $file | grep -c '/'` -gt 0 ]; then
+        filename=`echo $file | sed -n 's/.*\/\(.*\..*\)/\1/p'` # extract filename from paths. i.e. emacs.d/init.el -> init.el
+        ln -s $dir/$file ~/.$filename # ~/dotfiles/emacs.d/init.el -> ~/.init.el
+    else
+        ln -s $dir/$file ~/.$file # ~/dotfiles/vimrc -> ~/.vimrc
+    fi
 done
 
 # example
