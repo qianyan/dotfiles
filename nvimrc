@@ -17,7 +17,7 @@ endif
 
 " {{ shortcuts
 " jk => esc
-"inoremap jk <ESC>
+inoremap jk <ESC>
 " ; => :
 nnoremap ; :
 
@@ -44,9 +44,15 @@ set termguicolors
 set wildmenu
 set wildmode=full
 " insert ["] before and after current text.
-nnoremap <silent><leader>" viw<esc>a"<esc>hbi"<esc>lel nnoremap
+nnoremap <silent><leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <silent><leader>' viw<esc>a'<esc>hbi'<esc>lel
 nnoremap <leader>t :MakeGreen %<CR>
+" }}
+" extract args {{
+nmap <silent><leader>ea f(dsbdB
+" }}
+" wrap args {{
+nmap <silent><leader>wa f;ysBf
 " }}
 " trave buffer
 nnoremap <silent> [b :bprevious<CR> 
@@ -68,8 +74,8 @@ set statusline+=/         " Separator
 set statusline+=%L        " Total lines
 
 " indent
-set shiftwidth=4   " autoindent length
-set tabstop=4    " define a tab length with space's numbers
+set shiftwidth=2   " autoindent length
+set tabstop=2    " define a tab length with space's numbers
 set expandtab      " blackspace instead of tab
 
 " allow backspacing over everything in insert mode
@@ -121,6 +127,11 @@ Plugin 'tomlion/vim-solidity'
 Plugin 'fatih/vim-go'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'euclio/vim-markdown-composer'
+" for elixir
+Plugin 'elixir-editors/vim-elixir'
+Plugin 'slashmili/alchemist.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()
 filetype plugin indent on
 
