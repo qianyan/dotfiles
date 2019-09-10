@@ -132,6 +132,7 @@ Plugin 'elixir-editors/vim-elixir'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'hzchirs/vim-material'
 call vundle#end()
 filetype plugin indent on
 
@@ -139,11 +140,14 @@ filetype plugin indent on
 let g:python_host_prog  = '/usr/local/bin/python'                                  
 let g:python3_host_prog = '/usr/local/bin/python3'
 
-"colorscheme tomorrow
 syntax enable
 set updatetime=750
 set background=dark
-colorscheme molokai
+colorscheme vim-material
+let g:airline_theme='material'
+
+"colorscheme tomorrow
+"colorscheme molokai
 
 let g:gitgutter_realtime = 1
 set nobackup		" do not keep a backup file 
