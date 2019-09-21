@@ -139,7 +139,8 @@ Plugin 'euclio/vim-markdown-composer'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'slashmili/alchemist.vim'
 " for rust
-Plugin 'jtdowney/vimux-cargo'
+Plugin 'qianyan/vimux-cargo'
+" powerline
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " for theme
