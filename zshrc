@@ -5,8 +5,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="fino"
-#ZSH_THEME="arrow"
+#ZSH_THEME="fino"
+ZSH_THEME="arrow"
 #ZSH_THEME="awesomepanda"
 
 # Example aliases
@@ -97,22 +97,26 @@ function rvm {
   [ -s "$HOME/.rvm/scripts/rvm" ] && . "$HOME/.rvm/scripts/rvm"
 }
 
-function nvm {
-  echo "🚨 NVM not loaded! Loading now..."
-  unset -f nvm
-  export NVM_PREFIX=$(brew --prefix nvm)
-  export NVM_DIR=~/.nvm
-  [ -s "$NVM_PREFIX/nvm.sh" ] && . "$NVM_PREFIX/nvm.sh"
-  nvm "$@"
+# switch to the other jdk
+function sjava {
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home
+  export PATH="$JAVA_HOME/bin:$PATH"
 }
+
 #export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home
 PATH=~/bin:$JAVA_HOME/bin:$PATH
 export TOMCAT_HOME=/usr/local/Cellar/tomcat@8.0/8.0.39/libexec
-export ANDROID_HOME=~/bin/
 
 # tabtab source for jhipster package
 # uninstall by removing these lines or running `tabtab uninstall jhipster`
 [[ -f /Users/qianyan/.config/yarn/global/node_modules/tabtab/.completions/jhipster.zsh ]] && . /Users/qianyan/.config/yarn/global/node_modules/tabtab/.completions/jhipster.zsh
 #export https_proxy=http://127.0.0.1:6152;export http_proxy=http://127.0.0.1:6152
-export PATH="/usr/local/opt/mysql-client/bin:$GOPATH/bin:$ANDROID_HOME/tools/bin:$PATH"
+export PATH="/Users/qianyan/Library/Python/3.7/bin:/usr/local/opt/mysql-client/bin:$GOPATH/bin:$PATH"
 export LD_LIBRARY_PATH=/usr/local/lib
+
+# fnm
+export PATH=$HOME/.fnm:$PATH
+eval "`fnm env --multi`"
+export ANDROID_HOME=/Users/qianyan/Library/Android/sdk
+setopt no_nomatch 
