@@ -49,11 +49,17 @@ nnoremap <silent><leader>' viw<esc>a'<esc>hbi'<esc>lel
 nnoremap <leader>t :MakeGreen %<CR>
 " }}
 " extract args {{
-nmap <silent><leader>ea f(dsbdB
+nmap <silent><leader>ea dt(dsb
 " }}
 " wrap args {{
-nmap <silent><leader>wa f;ysBf
+nmap <silent><leader>wa ysvf;f
 " }}
+"
+"
+map <Leader>rc :wa<CR> :CargoRun<CR>
+map <Leader>ra :wa<CR> :CargoTestAll<CR>
+map <Leader>rb :wa<CR> :CargoUnitTestCurrentFile<CR>
+map <Leader>rf :wa<CR> :CargoUnitTestFocused<CR>
 " trave buffer
 nnoremap <silent> [b :bprevious<CR> 
 nnoremap <silent> ]b :bnext<CR> 
@@ -109,7 +115,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tomasr/molokai'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'klen/python-mode'
 Plugin 'myhere/vim-nodejs-complete'
 Plugin 'majutsushi/tagbar'
@@ -123,6 +128,9 @@ Plugin 'reinh/vim-makegreen'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tomlion/vim-solidity'
+" for tmux
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'benmills/vimux'
 " for golang
 Plugin 'fatih/vim-go'
 Plugin 'AndrewRadev/splitjoin.vim'
@@ -130,8 +138,11 @@ Plugin 'euclio/vim-markdown-composer'
 " for elixir
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'slashmili/alchemist.vim'
+" for rust
+Plugin 'jtdowney/vimux-cargo'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+" for theme
 Plugin 'hzchirs/vim-material'
 call vundle#end()
 filetype plugin indent on
@@ -142,7 +153,7 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 
 syntax enable
 set updatetime=750
-set background=dark
+set background=light
 colorscheme vim-material
 let g:airline_theme='material'
 
