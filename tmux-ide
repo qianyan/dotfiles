@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+tmux splitw -v -p 30
+tmux splitw -h -p 66
+tmux splitw -h -p 50
