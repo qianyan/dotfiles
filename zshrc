@@ -105,7 +105,7 @@ function sjava {
 
 #export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-9.jdk/Contents/Home
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home
-PATH=~/bin:$JAVA_HOME/bin:$PATH
+PATH=~/dotfiles/bin:~/bin:$JAVA_HOME/bin:$PATH
 export TOMCAT_HOME=/usr/local/Cellar/tomcat@8.0/8.0.39/libexec
 
 # tabtab source for jhipster package
