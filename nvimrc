@@ -56,6 +56,7 @@ nmap <silent><leader>wa ysvf;f
 " }}
 "
 "
+map <Leader>ri :wa<CR> :CargoBuild<CR>
 map <Leader>rc :wa<CR> :CargoRun<CR>
 map <Leader>ra :wa<CR> :CargoTestAll<CR>
 map <Leader>rb :wa<CR> :CargoUnitTestCurrentFile<CR>
@@ -154,7 +155,7 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 
 syntax enable
 set updatetime=750
-set background=light
+set background=dark
 colorscheme vim-material
 let g:airline_theme='material'
 
