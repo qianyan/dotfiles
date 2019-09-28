@@ -61,6 +61,10 @@ map <Leader>rc :wa<CR> :CargoRun<CR>
 map <Leader>ra :wa<CR> :CargoTestAll<CR>
 map <Leader>rb :wa<CR> :CargoUnitTestCurrentFile<CR>
 map <Leader>rf :wa<CR> :CargoUnitTestFocused<CR>
+
+" Elixir vimix enable
+let g:vimix_map_keys = 1
+
 " trave buffer
 nnoremap <silent> [b :bprevious<CR> 
 nnoremap <silent> ]b :bnext<CR> 
@@ -139,6 +143,7 @@ Plugin 'euclio/vim-markdown-composer'
 " for elixir
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'slashmili/alchemist.vim'
+Plugin 'spiegela/vimix'
 " for rust
 Plugin 'qianyan/vimux-cargo'
 " powerline
