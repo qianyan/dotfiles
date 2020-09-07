@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# set alias for kubectl
+function kc() {
+  : ${NS:=testnet}
+  alias k='kubectl -n $NS '
+  alias h='helm -n $NS '
+
+# choose expected region to connect
+  PS3="Please choose your region [cn,hk]: "
+  opts=("cn" "hk")
+  echo "Available regions"
+  echo "------------------"
+  select opt in "${opts[@]}"
+  do
+    case $opt in
+      "cn")
+        REGION="cn"
+        source ~/bin/kube-env/.env
+        break
+        ;;
+      "hk")
+        REGION="hk"
+        source ~/bin/kube-env/.env
+        break
+        ;;
+      *)
+        echo "Not supported num: $opt"
+        break
+        ;;
+    esac
+  done
+}
