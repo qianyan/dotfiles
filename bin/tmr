@@ -26,11 +26,11 @@ for item in ${items[@]}
 do
   # 1. Make 'pem_path username@host'
   cred=$(echo "$item" | tr ':' ' ')
-  host=$(echo "$item" | cut -d '@' -f 2)
+  user_at_host=$(echo "$item" | cut -d ':' -f 2)
 
   # 2. List remote tmux sessions and trim to many spaces(\n）
   sessions_str=$(echo $(ssh -i $cred -t tmux list-sessions -F"#S" 2>/dev/null) | tr [:space:] ' ')
-  printf "Host: %s has Sessions: %s\n"  "$host" "$sessions_str"
+  printf "Host: %s has Sessions: %s\n"  "${user_at_host}" "$sessions_str"
 
   # 3. As an array
   sessions=($sessions_str)
