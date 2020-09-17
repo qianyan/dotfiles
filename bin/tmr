@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+# abort if we're already inside a TMUX session
+[ "$TMUX" == "" ] || exit 0
+# startup a "default" session if non currently exists
+# tmux has-session -t _default || tmux new-session -s _default -d
+
+# present menu for user to choose which workspace to open
+PS3="Please choose your session: "
+BASEDIR="$(dirname $0)"
+source $BASEDIR/../.env
+cred_dir=$CRED_CONFIG
+options=()
+creds=()
+items=()
+
+while IFS=: read -r f1 f2 f3
+do
+   pem="$cred_dir/$f3"
+   username="$f1"
+   host="$f2"
+   items+=("$pem:$username@$host")
+done <"${cred_dir}/remote_hosts"
+
+for item in ${items[@]}
+do
+  # 1. Make 'pem_path username@host'
+  cred=$(echo "$item" | tr ':' ' ')
+  host=$(echo "$item" | cut -d '@' -f 2)
+
+  # 2. List remote tmux sessions and trim to many spaces(\n）
+  sessions_str=$(echo $(ssh -i $cred -t tmux list-sessions -F"#S" 2>/dev/null) | tr [:space:] ' ')
+  printf "Host: %s has Sessions: %s\n"  "$host" "$sessions_str"
+
+  # 3. As an array
+  sessions=($sessions_str)
+
+  # 4. Match each session with 'pem_path username@host' for next selected option
+  len=${#sessions[@]}
+  for (( i=0; i<${len}; i++ ));
+  do
+    creds+=("$cred")
+  done
+
+  # 5. Append tmux sessions
+  options+=(${sessions[@]})
+done
+
+echo "Available remote sessions"
+echo "------------------"
+echo " "
+select opt in "${options[@]}"
+do
+	case $opt in
+		*)
+      # select base index is 1, so minus it.
+      index=$REPLY-1 
+      ssh -i ${creds[$index]} -t tmux attach-session -t $opt
+			break
+			;;
+	esac
+done
