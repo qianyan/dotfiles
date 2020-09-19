@@ -27,13 +27,21 @@ done <"${cred_dir}/remote_hosts"
 
 for item in ${items[@]}
 do
-  # 1. Make 'pem_path username@host'
+  # 1. Make 'pem_path username@host' phase
   cred=$(echo "$item" | tr ':' ' ')
   user_at_host=$(echo "$item" | cut -d ':' -f 2)
 
   # 2. List remote tmux sessions and trim to many spaces(\n）
   sessions_str=$(echo $(ssh -i $cred -t tmux list-sessions -F"#S" 2>/dev/null) | tr [:space:] ' ')
-  printf "Host: %s has Sessions: %s\n"  "${user_at_host}" "$sessions_str"
+
+  # 2.1 guard if there are no sessions
+  if [[ $sessions_str == *"no server running"* ]]; then
+    printf "Host: %s has no sessions\n"  "${user_at_host}"
+    continue;
+  fi
+
+  # 2.2 prints if there are sessions over here
+  printf "Host: %s has sessions: %s\n"  "${user_at_host}" "$sessions_str"
 
   # 3. As an array
   sessions=($sessions_str)
