@@ -136,6 +136,8 @@ Plugin 'tomlion/vim-solidity'
 " for tmux
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
+" for groovy
+Plugin 'groovy.vim'
 " for golang
 Plugin 'fatih/vim-go'
 Plugin 'AndrewRadev/splitjoin.vim'
@@ -151,6 +153,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " for theme
 Plugin 'hzchirs/vim-material'
+" for dart
+Plugin 'dart-lang/dart-vim-plugin'
 call vundle#end()
 filetype plugin indent on
 
