@@ -128,6 +128,7 @@ source '/Users/qianyan/dotfiles/wasm.sh'
 eval export PATH="/Users/qianyan/.jenv/shims:${PATH}"
 export JENV_SHELL=zsh
 export JENV_LOADED=1
+unset JAVA_HOME
 source '/usr/local/Cellar/jenv/0.5.4/libexec/libexec/../completions/jenv.zsh'
 jenv rehash 2>/dev/null
 jenv refresh-plugins
