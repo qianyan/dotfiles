@@ -104,59 +104,56 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 map <C-n> :NERDTreeToggle<CR>
 " }}
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-" {{ set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'rizzatti/dash.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'othree/html5.vim'
-Plugin 'kana/vim-fakeclip'
-Plugin 'paredit.vim'
-Plugin 'wycats/nerdtree'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tomasr/molokai'
-Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'klen/python-mode'
-Plugin 'myhere/vim-nodejs-complete'
-Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-surround'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'freeo/vim-kalisi'
-Plugin 'lambdalisue/nodeunit.vim'
-Plugin 'reinh/vim-makegreen'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'tomlion/vim-solidity'
+call plug#begin()
+Plug 'rizzatti/dash.vim'
+Plug 'mattn/emmet-vim'
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'kana/vim-fakeclip'
+Plug 'paredit.vim'
+Plug 'wycats/nerdtree'
+Plug 'kien/ctrlp.vim'
+Plug 'tomasr/molokai'
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'klen/python-mode'
+Plug 'myhere/vim-nodejs-complete'
+Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'altercation/vim-colors-solarized'
+Plug 'freeo/vim-kalisi'
+Plug 'lambdalisue/nodeunit.vim'
+Plug 'reinh/vim-makegreen'
+Plug 'airblade/vim-gitgutter'
+Plug 'easymotion/vim-easymotion'
+Plug 'tomlion/vim-solidity'
 " for tmux
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'benmills/vimux'
-" for groovy
-Plugin 'groovy.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'benmills/vimux'
 " for golang
-Plugin 'fatih/vim-go'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'euclio/vim-markdown-composer'
+Plug 'fatih/vim-go'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'euclio/vim-markdown-composer'
 " for elixir
-Plugin 'elixir-editors/vim-elixir'
-Plugin 'slashmili/alchemist.vim'
-Plugin 'spiegela/vimix'
+Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+Plug 'spiegela/vimix'
 " for rust
-Plugin 'qianyan/vimux-cargo'
+Plug 'qianyan/vimux-cargo'
 " powerline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " for theme
-Plugin 'hzchirs/vim-material'
+Plug 'hzchirs/vim-material'
 " for dart
-Plugin 'dart-lang/dart-vim-plugin'
-call vundle#end()
-filetype plugin indent on
+Plug 'dart-lang/dart-vim-plugin'
+" for fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+call plug#end()
 
 " python
 let g:python_host_prog  = '/usr/local/bin/python'                                  
@@ -164,7 +161,7 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 
 syntax enable
 set updatetime=750
-set background=dark
+set background=light
 colorscheme vim-material
 let g:airline_theme='material'
 
