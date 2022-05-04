@@ -1,0 +1,22 @@
+IMAPAccount gmail
+Host imap.gmail.com
+User qianyan.lambda@gmail.com
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/.mbsyncpass.gpg"
+SSLType IMAPS
+AuthMechs LOGIN
+CertificateFile /etc/ssl/cert.pem
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+SubFolders Verbatim
+Path ~/Mail/
+Inbox ~/Mail/Inbox
+
+Channel gmail
+Far  :gmail-remote:
+Near :gmail-local:
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Trash"
+Create Both
+SyncState *
