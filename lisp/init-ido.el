@@ -7,7 +7,8 @@
   (setq ido-vertical-show-count t)
   (setq ido-use-faces t)
   (set-face-attribute 'ido-vertical-first-match-face nil
-                      :background "#e5b7c0")
+                      :foreground "orange"
+                      :background nil)
   (set-face-attribute 'ido-vertical-only-match-face nil
                       :background "#e52b50"
                       :foreground "white")
