@@ -7,7 +7,7 @@
 (defun my-clj-refactor-mode-hook ()
     (clj-refactor-mode 1)
     (yas-minor-mode 1) ; for adding require/use/import
-    (cljr-add-keybindings-with-prefix "C-c C-m"))
+    (cljr-add-keybindings-with-prefix "C-c C-r"))
 
 (use-package clojure-mode
              :ensure t
