@@ -153,14 +153,14 @@
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
-
-(use-package rainbow-mode
-  :defer t
-  :hook (org-mode
-         emacs-lisp-mode
-         web-mode
-         typescript-mode
-         js2-mode))
+;; conflict with org-capture
+;; (use-package rainbow-mode
+;;   :defer t
+;;   :hook (org-mode
+;;          emacs-lisp-mode
+;;          web-mode
+;;          typescript-mode
+;;          js2-mode))
 
 (use-package org-roam
   :ensure t
@@ -215,15 +215,23 @@
   :ensure nil
   :load-path "/usr/local/share/emacs/site-lisp/mu/mu4e/"
   :config
+  (require 'mu4e-org)
   (setq mu4e-change-filename-when-moving t)
-  ;; Refresh mail using isync every 10 hours
-  (setq mu4e-update-interval (* 10 60 60))
+  ;; Refresh mail using isync every 10 minutes.
+  (setq mu4e-update-interval (* 10 60))
   (setq mu4e-maildir "~/Mail")
   
   (setq mu4e-drafts-folder "/[Gmail].Drafts")
   (setq mu4e-sent-folder   "/[Gmail].Sent Mail")
   (setq mu4e-refile-folder "/[Gmail].All Mail")
   (setq mu4e-trash-folder  "/[Gmail].Trash")
+
+  (setq org-capture-templates
+        `(("m" "Email Workflow")
+          ("mf" "Follow Up" entry (file+olp "~/Sync/workflows/Mail.org" "Follow Up")
+           "* TODO %a")
+          ("mr" "Read Later" entry (file+olp "~/Sync/workflows/Mail.org" "Read Later")
+           "* TODO %a")))
   
   (setq mu4e-maildir-shortcuts
         '(("/Inbox"                 . ?i)
@@ -308,9 +316,10 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
+(setq org-directory (quote ("~/Sync/workflows")))
 
 ;;; add org directory to agenda.
-(setq org-agenda-files (quote ("~/Sync/workflows")))
+(setq org-agenda-files (quote ("~/Sync/workflows/Agenda/")))
 (setq org-todo-keywords
       '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
 
@@ -371,9 +380,23 @@
                 components (cdr components)))
         (concat str (reduce (lambda (a b) (concat a "/" b)) components))))
 
-(defun rjs-eshell-prompt-function ()
-  (concat (shortened-path (eshell/pwd) 10)
-          (if (= (user-uid) 0) " # " " $ ")))
+;;; eshell
+(defun efs/configure-eshell ()
+  (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
+  (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
 
-(setq eshell-prompt-function 'rjs-eshell-prompt-function)
-(put 'set-goal-column 'disabled nil)
+  (evil-define-key '(normal insert visual) eshell-mode-map (kbd "C-r") 'counsel-esh-history)
+  (evil-define-key '(normal insert vidsual) eshell-mode-map (kbd "<home>") 'eshell-bol)
+  (evil-normalize-keymaps)
+
+  (setq eshell-history-size         10000
+        eshell-buffer-maximum-lines 10000
+        eshell-hist-ignoredups t
+        eshell-scroll-to-bottom-on-input t))
+
+(use-package eshell-git-prompt)
+
+(use-package eshell
+  ; :hook (eshell-first-time-mode . efs/configure-eshell)
+  :config
+  (eshell-git-prompt-use-theme 'robbyrussell))
