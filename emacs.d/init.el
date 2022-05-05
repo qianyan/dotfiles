@@ -179,7 +179,7 @@
       "* Characteristics\n\n- Family: %?\n- Inspired by: \n\n* Reference:\n\n"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
       :unnarrowed t)
-     ("b" "book notes" plain
+     ("b" "book notes" plainf
       (file "~/Sync/workflows/RoamNotes/Templates/BookNoteTemplate.org")
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
       :unnarrowed t)
@@ -244,6 +244,9 @@
   :config
   (setq explicit-shell-file-name "zsh")
   (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
+
+;;; Set font size
+(set-face-attribute 'default nil :font "Fira Mono" :height 200)
 
 (require 'icomplete)
 (require 'init-paredit)
