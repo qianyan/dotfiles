@@ -6,11 +6,23 @@
       package-enable-at-startup nil)
 
 (package-initialize)
-(package-refresh-contents)
+
+(unless package-archive-contents
+  (Package-refresh-contents))
+
+(defun qy/display-startup-time ()
+    (message "Emacs loaded in %s with %d garbage collections."
+             (format "%.2f seconds"
+                     (float-time
+                      (time-subtract after-init-time before-init-time)))
+             gcs-done))
+
+(add-hook 'emacs-startup-hook #'qy/display-startup-time)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 (add-to-list 'exec-path "/usr/local/bin")
+
 ;;; pin following packages to melpa-stable
 (add-to-list 'package-pinned-packages '(elixir-mode . "melpa-stable") t)
 
@@ -20,7 +32,7 @@
 (add-hook 'after-init-hook
           (lambda () (setq gc-cons-threshold initial-gc-cons-threshold)))
 
-;;; init screen
+; init screen
 (setq inhibit-startup-message t
       initial-scratch-message ""
       initial-major-mode 'fundamental-mode
@@ -248,6 +260,17 @@
 ;;; Set font size
 (set-face-attribute 'default nil :font "Fira Mono" :height 200)
 
+;;; Save what you enter into minibuffer
+(savehist-mode 1)
+
+;;; Remember and restore the last location of opened file
+(save-place-mode 1)
+
+;;; Revert buffers when the underlying file has changed
+;;; M-x revert-buffer
+(global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers t)
+
 (require 'icomplete)
 (require 'init-paredit)
 (require 'init-clojure-cider)
@@ -315,50 +338,85 @@
   (browse-url "http://news.ycombinator.com"))
 
 ;;; org-mode
-(require 'org)
+(defun qy/org-mode-setup ()
+  (org-indent-mode)
+  (variable-pitch-mode)
+  (visual-line-mode 0)
+  (setq evil-auto-indent nil))
+
+(use-package org
+  :hook (org-mode . qy/org-mode-setup)
+  :config
+  (setq org-ellipsis " ▾"
+        ;; hide bold, italic markers
+        org-hide-emphasis-markers t)
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+  :custom
+  (org-agenda-files
+   '("~/Sync/workflows/Agenda/Tasks.org"
+     "~/Sync/workflows/Agenda/Family.org"))
+  (org-todo-keywords
+      '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE"))))
+
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 (setq org-directory (quote ("~/Sync/workflows")))
 
-;;; add org directory to agenda.
-(setq org-agenda-files (quote ("~/Sync/workflows/Agenda/")))
-(setq org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+(use-package org-bullets
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+
+(defun qy/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+(use-package visual-fill-column
+  :hook (org-mode . qy/org-mode-visual-fill))
+
+(defun qy/org-font-setup ()
+  ;; Replace list hyphen - with dot .
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+  ;; Set faces for heading levels
+  (dolist (face '((org-level-1 . 1.2)
+                  (org-level-2 . 1.1)
+                  (org-level-3 . 1.05)
+                  (org-level-4 . 1.0)
+                  (org-level-5 . 1.1)
+                  (org-level-6 . 1.1)
+                  (org-level-7 . 1.1)
+                  (org-level-8 . 1.1)))
+    (set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face)))
+
+
+  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
+  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
+  (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
+  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
+  (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch))
+
+(qy/org-font-setup)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (put 'narrow-to-region 'disabled nil)
-;;(set-default-font "Source Code Pro 16")
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:background "#282828" :foreground "#fdf4c1"))))
- '(powerline-evil-normal-face ((t (:inherit powerline-evil-base-face :background "chartreuse3"))))
- '(term ((t (:foreground "ivory1"))))
- '(term-color-black ((t (:foreground "gray80"))))
- '(term-color-cyan ((t (:foreground "cyan2"))))
- '(term-color-green ((t (:foreground "OliveDrab3"))))
- '(term-color-yellow ((t (:foreground "gold1")))))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(cider-boot-parameters "repl -s wait")
- '(minibuffer-electric-default-mode t)
- '(org-agenda-files (quote ("~/Documents/org/work.org")))
- '(package-selected-packages
-   (quote
-    (## cider clj-refactor emacs-w3m w3m elixir-mode idris-mode p avy zenburn-theme xclip use-package tiny-menu smex scpaste rainbow-delimiters projectile prodigy powerline-evil planet-theme parenface obsidian-theme nlinum-relative monokai-theme midje-mode markdown-mode magit kibit-helper key-chord jazz-theme ido-vertical-mode ido-ubiquitous idle-highlight-mode idea-darkula-theme highlight-symbol helm-themes helm-ag haskell-mode find-file-in-project exec-path-from-shell evil-surround evil-leader evil-indent-textobject color-theme-sanityinc-solarized color-theme-monokai clojure-mode-extra-font-locking better-defaults ace-jump-mode ac-alchemist abc-mode)))
- '(safe-local-variable-values
-   (quote
-    ((cider-cljs-lein-repl . "(do (user/run) (user/browser-repl))")
-     (cider-refresh-after-fn . "reloaded.repl/go")
-     (cider-refresh-before-fn . "reloaded.repl/stop")))))
+(setq custom-file (locate-user-emacs-file "cutom-vars.el"))
+(load custom-file 'noerror 'nomessage)
 
 ;;; global set
 (global-set-key (kbd "C-M-=") 'toggle-frame-fullscreen)
@@ -403,3 +461,4 @@
   ; :hook (eshell-first-time-mode . efs/configure-eshell)
   :config
   (eshell-git-prompt-use-theme 'robbyrussell))
+
