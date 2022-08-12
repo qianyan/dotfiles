@@ -10,6 +10,7 @@ Ryan's dot files
 * gitignore_global
 * vimrc
 * nvimrc
+ * ln -s nvimrc $HOME/.config/nvim/init.vim
 * bashrc
 * svn_support
 * tmux.conf
