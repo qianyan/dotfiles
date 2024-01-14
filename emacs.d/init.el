@@ -8,7 +8,7 @@
 (package-initialize)
 
 (unless package-archive-contents
-  (Package-refresh-contents))
+  (package-refresh-contents))
 
 (defun qy/display-startup-time ()
     (message "Emacs loaded in %s with %d garbage collections."
