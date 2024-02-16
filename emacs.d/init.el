@@ -152,6 +152,7 @@
 (require 'init-ido)
 (require 'init-hydra)
 (require 'init-powerline)
+(require 'init-gui-frame)
 (require 'init-evil)
 (require 'init-themes)
 (require 'init-doom-themes)
@@ -159,26 +160,26 @@
 (defun my-replace-symbol ()
   (dolist (mode '(clojure-mode clojurescript-mode cider-mode))
     (eval-after-load mode
-                     (font-lock-add-keywords
-                       mode '(
-                              ("(\\(fn\\)[\[[:space:]]"  ; anon funcs 1
-                               (0 (progn (compose-region (match-beginning 1)
-                                                         (match-end 1) "λ")
-                                         nil)))
-                              ("\\(#\\)("                ; anon funcs 2
-                               (0 (progn (compose-region (match-beginning 1)
-                                                         (match-end 1) "ƒ")
-                                         nil)))
-                              ("\\(#_\\)("                ; anon funcs 2-1
-                               (0 (progn (compose-region (match-beginning 1)
-                                                         (match-end 1) "€")
-                                         nil)))
+      (font-lock-add-keywords
+       mode '(
+              ("(\\(fn\\)[\[[:space:]]" ; anon funcs 1
+               (0 (progn (compose-region (match-beginning 1)
+                                         (match-end 1) "λ")
+                         nil)))
+              ("\\(#\\)("               ; anon funcs 2
+               (0 (progn (compose-region (match-beginning 1)
+                                         (match-end 1) "ƒ")
+                         nil)))
+              ("\\(#_\\)("              ; anon funcs 2-1
+               (0 (progn (compose-region (match-beginning 1)
+                                         (match-end 1) "€")
+                         nil)))
 
-                              ("\\(#\\){"              ; sets
-                               (0 (progn (compose-region (match-beginning 1)
-                                                         (match-end 1) "∈")
-                                         nil)))
-                              )))))
+              ("\\(#\\){"               ; sets
+               (0 (progn (compose-region (match-beginning 1)
+                                         (match-end 1) "∈")
+                         nil)))
+              )))))
 
 (add-hook 'after-init-hook 'my-replace-symbol)
 
