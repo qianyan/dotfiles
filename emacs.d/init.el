@@ -1,8 +1,9 @@
 (require 'package)
 
-(setq package-archives '(("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                         ("melpa-stable" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/stable-melpa/")
-                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"))
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+                         ("melpa-stable" . "https://stable.melpa.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/"))
       package-enable-at-startup nil)
 
 (package-initialize)
@@ -66,16 +67,10 @@
       (append cal-china-x-important-holidays
               cal-china-x-general-holidays))
 
-(use-package w3m
-             :ensure t)
-
 (use-package projectile
              :ensure t
+             :bind-keymap ("C-c p" . projectile-command-map)
              :init (add-hook 'after-init-hook 'projectile-global-mode))
-
-(use-package hydra
-             :ensure t
-             :pin melpa-stable)
 
 (use-package rainbow-delimiters
              :ensure t)
@@ -83,13 +78,6 @@
 (use-package clj-refactor
              :ensure t
              :pin melpa-stable)
-
-
-(use-package smex
-             :ensure t
-             :defer t
-             :bind (("M-x" . smex))
-             :config (smex-initialize))
 
 (use-package exec-path-from-shell
              :ensure t
@@ -132,133 +120,19 @@
              :bind ("C-," . avy-goto-char)
              ("C-'" . avy-goto-char-2))
 
-(use-package prodigy
-             :ensure t
-             :commands (prodigy)
-             :bind* (("M-m s b" . prodigy))
-             :init
-             (prodigy-define-tag
-               :name 'blog
-               :ready-message "Serving blog. Ctrl-C to shutdown server")
-             (prodigy-define-service
-               :name "hexo generate"
-               :command "hexo"
-               :args '("g")
-               :cwd "~/Sync/blog"
-               :tags '(blog)
-               :kill-signal 'sigkill)
-             (prodigy-define-service
-               :name "hexo serve"
-               :command "hexo"
-               :args '("s")
-               :cwd "~/Sync/blog"
-               :tags '(blog)
-               :kill-signal 'sigkill
-               :kill-process-buffer-on-stop t)
-             (prodigy-define-service
-               :name "hexo deploy"
-               :command "hexo"
-               :args '("d")
-               :cwd "~/Sync/blog"
-               :tags '(blog)
-               :kill-signal 'sigkill))
-
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
-;; conflict with org-capture
-;; (use-package rainbow-mode
-;;   :defer t
-;;   :hook (org-mode
-;;          emacs-lisp-mode
-;;          web-mode
-;;          typescript-mode
-;;          js2-mode))
-
-(use-package org-roam
-  :ensure t
-  :custom
-  (org-roam-directory (file-truename "~/Sync/workflows/RoamNotes/"))
-  (org-roam-completion-everywhere t)
-  (org-roam-dailies-capture-templates
-   '(("d" "default" entry "* %<%I:%M %p>: %?"
-      :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
-  (org-roam-capture-templates
-   '(("d" "default" plain-TeX-mode
-      "%?"
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")
-      :unnarrowed t)
-     ("l" "programming language" plain
-      "* Characteristics\n\n- Family: %?\n- Inspired by: \n\n* Reference:\n\n"
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-      :unnarrowed t)
-     ("b" "book notes" plainf
-      (file "~/Sync/workflows/RoamNotes/Templates/BookNoteTemplate.org")
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-      :unnarrowed t)
-     ("p" "project" plain
-      "* Goals\n\n%?\n\n* Tasks\n\n** TODO Add initial tasks\n\n* Dates\n\n"
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: Project")
-      :unnarrowed t)
-     ))
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n f" . org-roam-node-find)
-         ("C-c n g" . org-roam-graph)
-         ("C-c n i" . org-roam-node-insert)
-         ("C-c n c" . org-roam-capture)
-         ;; Dailies
-         ("C-c n j" . org-roam-dailies-capture-today)
-         :map org-mode-map
-         ("C-M-i"   . completion-at-point)
-         :map org-roam-dailies-map
-         ("Y" . org-roam-dailies-capture-yesterday)
-         ("T" . org-roam-dailies-capture-tomorrow)
-         )
-  :bind-keymap
-  ("C-c n d" . org-roam-dailies-map)
-  :config
-  ;; If you're using a vertical completion framework, you might want a more informative completion interface
-  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-  (require 'org-roam-dailies)
-  (org-roam-db-autosync-mode)
-  ;; If using org-roam-protocol
-  (require 'org-roam-protocol))
-
-(use-package mu4e
-  :ensure nil
-  :load-path "/usr/local/share/emacs/site-lisp/mu/mu4e/"
-  :config
-  (require 'mu4e-org)
-  (setq mu4e-change-filename-when-moving t)
-  ;; Refresh mail using isync every 10 minutes.
-  (setq mu4e-update-interval (* 10 60))
-  (setq mu4e-maildir "~/Mail")
-  
-  (setq mu4e-drafts-folder "/[Gmail].Drafts")
-  (setq mu4e-sent-folder   "/[Gmail].Sent Mail")
-  (setq mu4e-refile-folder "/[Gmail].All Mail")
-  (setq mu4e-trash-folder  "/[Gmail].Trash")
-
-  (setq org-capture-templates
-        `(("m" "Email Workflow")
-          ("mf" "Follow Up" entry (file+olp "~/Sync/workflows/Mail.org" "Follow Up")
-           "* TODO %a")
-          ("mr" "Read Later" entry (file+olp "~/Sync/workflows/Mail.org" "Read Later")
-           "* TODO %a")))
-  
-  (setq mu4e-maildir-shortcuts
-        '(("/Inbox"                 . ?i)
-          ("/[Gmail].Sent Mail"     . ?s)
-          ("/[Gmail].Trash"         . ?t)
-          ("/[Gmail].Drafts"        . ?d)    
-          ("/[Gmail].All Mail"      . ?a))))
 
 (use-package term
   :config
   (setq explicit-shell-file-name "zsh")
   (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
 
+(use-package minimap
+             :ensure t)
+
 ;;; Set font size
-(set-face-attribute 'default nil :font "Fira Mono" :height 200)
+(set-face-attribute 'default nil :font "FiraMono Nerd Font Mono" :height 200)
 
 ;;; Save what you enter into minibuffer
 (savehist-mode 1)
@@ -276,13 +150,11 @@
 (require 'init-clojure-cider)
 (require 'init-recentf)
 (require 'init-ido)
+(require 'init-hydra)
 (require 'init-powerline)
 (require 'init-evil)
 (require 'init-themes)
-(require 'init-haskell)
-(require 'init-idris)
-(require 'init-elixir)
-(require 'init-markdown)
+(require 'init-doom-themes)
 
 (defun my-replace-symbol ()
   (dolist (mode '(clojure-mode clojurescript-mode cider-mode))
@@ -315,27 +187,10 @@
                                (interactive)
                                (find-file "~/.emacs.d/init.el")))
 
-;;; hydra-zoom config
-(defhydra hydra-zoom (global-map "<f2>")
-          "zoom"
-          ("g" text-scale-increase "in")
-          ("l" text-scale-decrease "out"))
 
 ;;; unit tests
 ;;; (setq cider-test-show-report-on-success t) ; whatever it fails or success, show report anyway.
-;(cider-auto-test-mode 1)
-
-;;; w3m setup
-;;change default browser for 'browse-url'  to w3m
-(setq browse-url-browser-function 'w3m-goto-url-new-session)
-
-;;change w3m user-agent to android
-(setq w3m-user-agent "Mozilla/5.0 (Linux; U; Android 2.3.3; zh-tw; HTC_Pyramid Build/GRI40) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.")
-
-;;quick access hacker news
-(defun hn ()
-  (interactive)
-  (browse-url "http://news.ycombinator.com"))
+                                        ;(cider-auto-test-mode 1)
 
 ;;; org-mode
 (defun qy/org-mode-setup ()
@@ -370,46 +225,6 @@
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
-(defun qy/org-mode-visual-fill ()
-  (setq visual-fill-column-width 100
-        visual-fill-column-center-text t)
-  (visual-fill-column-mode 1))
-
-(use-package visual-fill-column
-  :hook (org-mode . qy/org-mode-visual-fill))
-
-(defun qy/org-font-setup ()
-  ;; Replace list hyphen - with dot .
-  (font-lock-add-keywords 'org-mode
-                          '(("^ *\\([-]\\) "
-                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
-                  (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face)))
-
-
-  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
-  (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
-  (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
-  (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch))
-
-(qy/org-font-setup)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -418,8 +233,6 @@
 (setq custom-file (locate-user-emacs-file "cutom-vars.el"))
 (load custom-file 'noerror 'nomessage)
 
-;;; global set
-(global-set-key (kbd "C-M-=") 'toggle-frame-fullscreen)
 (let ((no-border '(internal-border-width . 0)))
   (add-to-list 'default-frame-alist no-border)
   (add-to-list 'initial-frame-alist no-border))
@@ -440,25 +253,4 @@
                 len (- len (1- (length (car components))))
                 components (cdr components)))
         (concat str (reduce (lambda (a b) (concat a "/" b)) components))))
-
-;;; eshell
-(defun efs/configure-eshell ()
-  (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
-  (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
-
-  (evil-define-key '(normal insert visual) eshell-mode-map (kbd "C-r") 'counsel-esh-history)
-  (evil-define-key '(normal insert vidsual) eshell-mode-map (kbd "<home>") 'eshell-bol)
-  (evil-normalize-keymaps)
-
-  (setq eshell-history-size         10000
-        eshell-buffer-maximum-lines 10000
-        eshell-hist-ignoredups t
-        eshell-scroll-to-bottom-on-input t))
-
-(use-package eshell-git-prompt)
-
-(use-package eshell
-  ; :hook (eshell-first-time-mode . efs/configure-eshell)
-  :config
-  (eshell-git-prompt-use-theme 'robbyrussell))
 
