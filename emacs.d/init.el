@@ -153,6 +153,7 @@
 (require 'init-hydra)
 (require 'init-powerline)
 (require 'init-gui-frame)
+(require 'init-dashboard)
 (require 'init-evil)
 (require 'init-themes)
 (require 'init-doom-themes)
