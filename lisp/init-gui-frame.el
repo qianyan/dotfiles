@@ -1,7 +1,15 @@
 (defconst *is-a-mac* (eq system-type 'darwin))
 
+;; Suppress GUI features
+
+(setq use-file-dialog nil)
+(setq use-dialog-box nil)
+(setq inhibit-startup-screen t)
+
+
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
+
 (when (fboundp 'set-scroll-bar-mode)
   (set-scroll-bar-mode nil))
 
@@ -49,5 +57,27 @@ locate PACKAGE."
 (add-hook 'term-mode-hook
           (lambda ()
             (setq line-spacing 0)))
+
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
+
+;; Change global font size easily
+
+(require-package 'default-text-scale)
+(add-hook 'after-init-hook 'default-text-scale-mode)
+
+(require-package 'disable-mouse)
+
+(when (fboundp 'pixel-scroll-precision-mode)
+  (pixel-scroll-precision-mode))
+
+;; maximize the frame at startup
+(setq-default
+ window-resize-pixelwise t
+ frame-resize-pixelwise t)
+(set-frame-position nil 0 0)
+(set-frame-size nil (display-pixel-width) (display-pixel-height) t)
 
 (provide 'init-gui-frame)
