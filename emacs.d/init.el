@@ -46,7 +46,6 @@
 (eval-when-compile
   (require 'use-package))
 
-;; format & full screen
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
@@ -123,16 +122,11 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
-(use-package term
-  :config
-  (setq explicit-shell-file-name "zsh")
-  (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
-
 (use-package minimap
              :ensure t)
 
 ;;; Set font size
-(set-face-attribute 'default nil :font "FiraMono Nerd Font Mono" :height 200)
+(set-face-attribute 'default nil :font "Fira Code" :height 200)
 
 ;;; Save what you enter into minibuffer
 (savehist-mode 1)
@@ -157,6 +151,7 @@
 (require 'init-evil)
 (require 'init-themes)
 (require 'init-doom-themes)
+(require 'init-orgmode)
 
 (defun my-replace-symbol ()
   (dolist (mode '(clojure-mode clojurescript-mode cider-mode))
@@ -189,70 +184,9 @@
                                (interactive)
                                (find-file "~/.emacs.d/init.el")))
 
-
-;;; unit tests
-;;; (setq cider-test-show-report-on-success t) ; whatever it fails or success, show report anyway.
-                                        ;(cider-auto-test-mode 1)
-
-;;; org-mode
-(defun qy/org-mode-setup ()
-  (org-indent-mode)
-  (variable-pitch-mode)
-  (visual-line-mode 0)
-  (setq evil-auto-indent nil))
-
-(use-package org
-  :hook (org-mode . qy/org-mode-setup)
-  :config
-  (setq org-ellipsis " ▾"
-        ;; hide bold, italic markers
-        org-hide-emphasis-markers t)
-  (setq org-agenda-start-with-log-mode t)
-  (setq org-log-done 'time)
-  (setq org-log-into-drawer t)
-  :custom
-  (org-agenda-files
-   '("~/Sync/workflows/Agenda/Tasks.org"
-     "~/Sync/workflows/Agenda/Family.org"))
-  (org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE"))))
-
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
-(setq org-directory (quote ("~/Sync/workflows")))
-
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-
-
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (put 'narrow-to-region 'disabled nil)
 
 (setq custom-file (locate-user-emacs-file "cutom-vars.el"))
 (load custom-file 'noerror 'nomessage)
-
-(let ((no-border '(internal-border-width . 0)))
-  (add-to-list 'default-frame-alist no-border)
-  (add-to-list 'initial-frame-alist no-border))
-
-(defun shortened-path (path max-len)
-      "Return a modified version of `path', replacing some components
-      with single characters starting from the left to try and get
-      the path down to `max-len'"
-      (let* ((components (split-string (abbreviate-file-name path) "/"))
-             (len (+ (1- (length components))
-                     (reduce '+ components :key 'length)))
-             (str ""))
-        (while (and (> len max-len)
-                    (cdr components))
-          (setq str (concat str (if (= 0 (length (car components)))
-                                    "/"
-                                  (string (elt (car components) 0) ?/)))
-                len (- len (1- (length (car components))))
-                components (cdr components)))
-        (concat str (reduce (lambda (a b) (concat a "/" b)) components))))
-
