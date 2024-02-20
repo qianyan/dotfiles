@@ -116,8 +116,11 @@
 
 (use-package avy
              :ensure t
-             :bind ("C-," . avy-goto-char)
-             ("C-'" . avy-goto-char-2))
+             :bind
+             ("C-," . avy-goto-char)
+             ("C-'" . avy-goto-char-2)
+             ("M-g f" . avy-goto-line)
+             ("M-g w" . avy-goto-word-1))
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
