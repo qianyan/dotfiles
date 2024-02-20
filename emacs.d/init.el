@@ -107,9 +107,6 @@
              :defer t
              :config (global-company-mode))
 
-(use-package helm-ag
-             :ensure t)
-
 (use-package helm-themes
              :ensure t
              :config (load-theme 'monokai t))
