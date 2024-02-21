@@ -102,10 +102,6 @@
              (setq magit-last-seen-setup-instructions "1.4.0")
              (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent"))
 
-(use-package company
-             :ensure t
-             :defer t
-             :config (global-company-mode))
 
 (use-package helm-themes
              :ensure t
@@ -152,6 +148,7 @@
 (require 'init-themes)
 (require 'init-doom-themes)
 (require 'init-orgmode)
+(require 'init-ai-assistant)
 
 (defun my-replace-symbol ()
   (dolist (mode '(clojure-mode clojurescript-mode cider-mode))
