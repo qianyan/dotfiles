@@ -148,6 +148,7 @@
 (require 'init-themes)
 (require 'init-doom-themes)
 (require 'init-orgmode)
+(require 'init-docview)      ; support view pdfs
 (require 'init-ai-assistant)
 
 (defun my-replace-symbol ()
