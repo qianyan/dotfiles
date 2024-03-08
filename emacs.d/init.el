@@ -1,6 +1,7 @@
 (require 'package)
 
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("elpa-devel" . "https://elpa.gnu.org/devel/")
                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
                          ("melpa-stable" . "https://stable.melpa.org/packages/")
                          ("melpa" . "https://melpa.org/packages/"))
@@ -118,12 +119,6 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
-(use-package minimap
-             :ensure t)
-
-;;; Set font size
-(set-face-attribute 'default nil :font "Fira Code" :height 200)
-
 ;;; Save what you enter into minibuffer
 (savehist-mode 1)
 
@@ -140,42 +135,17 @@
 (require 'init-clojure-cider)
 (require 'init-recentf)
 (require 'init-ido)
+(require 'init-minibuffer)
 (require 'init-hydra)
 (require 'init-powerline)
 (require 'init-gui-frame)
+(require 'init-fonts)
 (require 'init-dashboard)
 (require 'init-evil)
-(require 'init-themes)
 (require 'init-doom-themes)
 (require 'init-orgmode)
-(require 'init-docview)      ; support view pdfs
+(require 'init-docview)
 (require 'init-ai-assistant)
-
-(defun my-replace-symbol ()
-  (dolist (mode '(clojure-mode clojurescript-mode cider-mode))
-    (eval-after-load mode
-      (font-lock-add-keywords
-       mode '(
-              ("(\\(fn\\)[\[[:space:]]" ; anon funcs 1
-               (0 (progn (compose-region (match-beginning 1)
-                                         (match-end 1) "λ")
-                         nil)))
-              ("\\(#\\)("               ; anon funcs 2
-               (0 (progn (compose-region (match-beginning 1)
-                                         (match-end 1) "ƒ")
-                         nil)))
-              ("\\(#_\\)("              ; anon funcs 2-1
-               (0 (progn (compose-region (match-beginning 1)
-                                         (match-end 1) "€")
-                         nil)))
-
-              ("\\(#\\){"               ; sets
-               (0 (progn (compose-region (match-beginning 1)
-                                         (match-end 1) "∈")
-                         nil)))
-              )))))
-
-(add-hook 'after-init-hook 'my-replace-symbol)
 
 ;;; edit config file
 (global-set-key (kbd "<f6>") (lambda()
