@@ -1,8 +1,3 @@
-
-;; (defun dw/center-buffer-with-margins ()
-;;   (let ((margin-size (/ (- (frame-width) 80) 3)))
-;;     (set-window-margins nil margin-size margin-size)))
-;;; org-mode
 (defun qy/org-mode-setup ()
   (org-indent-mode)
   (variable-pitch-mode)
@@ -27,13 +22,66 @@
 
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-ca" 'org-agenda)
+
 (setq org-log-done t)
-(setq org-directory (quote ("~/Sync/workflows")))
+(setq org-directory "~/Sync/org")
+(defun +org-file-path (filename)
+  "Return the absolute address of an org file, given its relative name."
+  (concat (file-name-as-directory org-directory) filename))
+
+(setq org-index-file (+org-file-path "index.org"))
+
+(defun +open-index-file ()
+  "Open the master org TODO list."
+  (interactive)
+  (find-file org-index-file)
+  (flycheck-mode -1)
+  (end-of-buffer))
+
+(global-set-key (kbd "C-c i") '+open-index-file)
 
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+
+(use-package ox-latex
+  :ensure-system-package latexmk
+  :ensure nil
+  :after org
+  :commands (org-export-dispatch)
+
+  :custom
+  (org-latex-pdf-process '("latexmk -xelatex -shell-escape -quiet -f %f"))
+
+  (org-latex-src-block-backend 'listings)
+  (org-latex-listings-options
+   '(("basicstyle" "\\ttfamily")
+     ("showstringspaces" "false")
+     ("keywordstyle" "\\color{blue}\\textbf")
+     ("commentstyle" "\\color{gray}")
+     ("stringstyle" "\\color{green!70!black}")
+     ("stringstyle" "\\color{red}")
+     ("frame" "single")
+     ("numbers" "left")
+     ("numberstyle" "\\ttfamily")
+     ("columns" "fullflexible")))
+
+  (org-latex-packages-alist '(("" "listings")
+                              ("" "booktabs")
+                              ("UTF8" "ctex" t)
+                              ("AUTO" "polyglossia" t ("xelatex" "lualatex"))
+                              ("" "grffile")
+                              ("" "unicode-math")
+                              ("" "xcolor")))
+
+  :config
+  (add-to-list 'org-latex-logfiles-extensions "tex"))
+
+(use-package ox-beamer
+  :ensure nil
+  :after ox-latex)
 
 (defun qy/org-mode-visual-fill ()
   (setq visual-fill-column-width 110

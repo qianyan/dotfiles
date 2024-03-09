@@ -51,11 +51,14 @@
 (put 'downcase-region 'disabled nil)
 
 (setq cider-overlays-use-font-lock t)
+
 (use-package better-defaults
-             :ensure t)
+  :ensure t
+  :config
+  (ido-mode -1))
 
 (use-package cnfonts
-             :ensure t)
+  :ensure t)
 
 (use-package cal-china-x
              :ensure t)
@@ -94,20 +97,6 @@
              :config
              (setq-default highlight-symbol-idle-delay 1.5))
 
-(use-package magit
-             :ensure t
-             :defer t
-             :config
-             (setq magit-branch-arguments nil)
-             (setq magit-push-always-verify nil)
-             (setq magit-last-seen-setup-instructions "1.4.0")
-             (magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent"))
-
-
-(use-package helm-themes
-             :ensure t
-             :config (load-theme 'monokai t))
-
 (use-package avy
              :ensure t
              :bind
@@ -134,13 +123,15 @@
 (require 'init-paredit)
 (require 'init-clojure-cider)
 (require 'init-recentf)
-(require 'init-ido)
 (require 'init-minibuffer)
 (require 'init-hydra)
+
 (require 'init-powerline)
 (require 'init-gui-frame)
+(require 'init-icons)
 (require 'init-fonts)
 (require 'init-dashboard)
+
 (require 'init-evil)
 (require 'init-doom-themes)
 (require 'init-orgmode)
@@ -158,3 +149,6 @@
 
 (setq custom-file (locate-user-emacs-file "cutom-vars.el"))
 (load custom-file 'noerror 'nomessage)
+
+
+(org-babel-load-file "~/Sync/org/writing_gnu_emacs_extensions.org" 'compile)

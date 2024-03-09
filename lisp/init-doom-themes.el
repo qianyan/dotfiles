@@ -1,3 +1,6 @@
+(use-package helm-themes
+             :ensure t)
+
 (use-package doom-themes
   :ensure t
   :config

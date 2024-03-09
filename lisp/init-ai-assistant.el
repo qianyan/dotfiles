@@ -30,9 +30,15 @@
   ;; You shouldn't add ollama providers here - it can be selected interactively
   ;; without it. It is just example.
   (setopt ellama-providers
-		    '(("gemma" . (make-llm-ollama
-				   :chat-model "gemma:2b"
-				   :embedding-model "gemma:2b"))
+		    '(("gemma:7b" . (make-llm-ollama
+                                     :chat-model "gemma:7b"
+                                     :embedding-model "gemma:7b"))
+                      ("gemma:2b" . (make-llm-ollama
+				     :chat-model "gemma:2b"
+				     :embedding-model "gemma:2b"))
+                      ("codellama" . (make-llm-ollama
+				     :chat-model "codellama"
+				     :embedding-model "codellama"))                      
 		      ("mistral" . (make-llm-ollama
 				    :chat-model "mistral:latest"
 				    :embedding-model "mistral:latest"))

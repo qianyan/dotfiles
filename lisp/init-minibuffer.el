@@ -1,9 +1,11 @@
 (use-package vertico
   :ensure t
+  :init
+  (vertico-mode)
   :config
   (setq vertico-cycle t)
   (setq vertico-resize nil)
-  (vertico-mode 1))
+  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy))
 
 (use-package marginalia
   :ensure t
