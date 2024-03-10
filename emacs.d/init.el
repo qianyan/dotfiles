@@ -131,6 +131,7 @@
 (require 'init-icons)
 (require 'init-fonts)
 (require 'init-dashboard)
+(require 'init-presentation)
 
 (require 'init-evil)
 (require 'init-doom-themes)
@@ -151,4 +152,4 @@
 (load custom-file 'noerror 'nomessage)
 
 
-(org-babel-load-file "~/Sync/org/writing_gnu_emacs_extensions.org" 'compile)
+;(org-babel-load-file "~/Sync/org/writing_gnu_emacs_extensions.org" 'compile)
