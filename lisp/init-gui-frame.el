@@ -77,7 +77,7 @@ locate PACKAGE."
 (setq-default
  window-resize-pixelwise t
  frame-resize-pixelwise t)
-(set-frame-position nil 0 0)
-(set-frame-size nil (display-pixel-width) (display-pixel-height) t)
+(set-frame-position nil (/ (display-pixel-width) 4) 0) ; centering
+(set-frame-size nil (/ (display-pixel-width) 2) (display-pixel-height) t)
 
 (provide 'init-gui-frame)
