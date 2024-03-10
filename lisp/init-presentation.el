@@ -31,6 +31,7 @@
 
   ;;  Hide cursor
   (org-present-hide-cursor)
+  (evil-mode 0)
 
   ;; Read only
   (org-present-read-only)
@@ -53,6 +54,7 @@
 
   ;; Display cursor
   (org-present-show-cursor)
+  (evil-mode 1)
 
   ;; Read and write
   (org-present-read-write)
