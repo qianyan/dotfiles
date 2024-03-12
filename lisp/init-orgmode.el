@@ -13,6 +13,11 @@
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)
+     (shell . t)
+     (clojure . t)))
   :custom
   (org-agenda-files
    '("~/Sync/workflows/Agenda/Tasks.org"
