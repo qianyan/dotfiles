@@ -1,20 +1,23 @@
-(defface my-pl-segment1-active
-  '((t (:foreground "#000000" :background "#E1B61A")))
-  "Powerline first segment active face.")
+(defface my-pl-segment1-active ;buffer-name
+  '((t (:foreground "gray18" :background "azure1"))) ;dark, yellow
+  ;'((t (:foreground "#000000" :background "#E1B61A"))) ;dark, yellow
+  "Powerline first segment ective face.")
 (defface my-pl-segment1-inactive
-  '((t (:foreground "#CEBFF3" :background "#3A2E58")))
+  '((t (:foreground "#CEBFF3" :background "#3A2E58"))) ;light-purple, :purple 
   "Powerline first segment inactive face.")
 (defface my-pl-segment2-active
-  '((t (:foreground "#F5E39F" :background "#8A7119")))
+  '((t (:foreground "gray18" :background "azure2"))) ;light-yellow, deep-yellow
+;  '((t (:foreground "#F5E39F" :background "#8A7119"))) ;light-yellow, deep-yellow
   "Powerline second segment active face.")
 (defface my-pl-segment2-inactive
-  '((t (:foreground "#CEBFF3" :background "#3A2E58")))
+  '((t (:foreground "#CEBFF3" :background "#3A2E58"))) ;light-purple, deep-purple
   "Powerline second segment inactive face.")
 (defface my-pl-segment3-active
-  '((t (:foreground "#CEBFF3" :background "#3A2E58")))
+  '((t (:foreground "gray18" :background "azure3"))) ;light-purple, deep-purple
+  ;'((t (:foreground "#CEBFF3" :background "#3A2E58"))) ;light-purple, deep-purple
   "Powerline third segment active face.")
 (defface my-pl-segment3-inactive
-  '((t (:foreground "#CEBFF3" :background "#3A2E58")))
+  '((t (:foreground "#CEBFF3" :background "#3A2E58"))) ;light-purple, deep-purple
   "Powerline third segment inactive face.")
 
 (defun air--powerline-default-theme ()
@@ -77,7 +80,8 @@
   :config
   (setq powerline-default-separator (if (display-graphic-p) 'arrow
                                       nil))
-  (air--powerline-default-theme))
+  (air--powerline-default-theme)
+  )
 
 (use-package powerline-evil
   :ensure t)
