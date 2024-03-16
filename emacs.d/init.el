@@ -50,12 +50,11 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-(setq cider-overlays-use-font-lock t)
-
 (use-package better-defaults
   :ensure t
   :config
-  (ido-mode -1))
+  (ido-mode -1)
+  (mouse-wheel-mode 0))                        ; disable ido-mode becuase of the vertico we enabled have conflict with it.
 
 (use-package cnfonts
   :ensure t)
@@ -122,11 +121,12 @@
 (require 'icomplete)
 (require 'init-paredit)
 (require 'init-clojure-cider)
+(require 'init-term)
 (require 'init-recentf)
 (require 'init-minibuffer)
+(require 'init-modeline)
 (require 'init-hydra)
 
-(require 'init-powerline)
 (require 'init-gui-frame)
 (require 'init-icons)
 (require 'init-fonts)
@@ -139,6 +139,13 @@
 (require 'init-docview)
 (require 'init-ai-assistant)
 
+(use-package pyvenv
+  :ensure t)
+
+;;; timer
+(use-package tmr
+  :ensure t)
+
 ;;; edit config file
 (global-set-key (kbd "<f6>") (lambda()
                                (interactive)
@@ -146,10 +153,20 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(put 'narrow-to-region 'disabled nil)
-
 (setq custom-file (locate-user-emacs-file "cutom-vars.el"))
 (load custom-file 'noerror 'nomessage)
 
 
-;(org-babel-load-file "~/Sync/org/writing_gnu_emacs_extensions.org" 'compile)
+(org-babel-load-file "~/Sync/org/writing_gnu_emacs_extensions.org" 'compile)
+
+(defun qy/dired-jump-siderbar ()
+  (interactive)
+  (progn
+    (display-buffer-in-side-window
+     (dired-noselect default-directory)
+     '((side . left))
+     )
+    (other-window 1)))
+
+;;; most programming mode are inherited from prog-mode
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)

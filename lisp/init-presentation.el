@@ -43,8 +43,7 @@
   (hide-mode-line-mode +1))
 
 (defun qy/org-present-end ()
-  "Stop centering the presentation"
-  (setq-local face-remappng-alist '((default variable-pitch default)))
+  (setq-local face-remapping-alist '((default variable-pitch default)))
 
   ;; Clear the header line format by setting to `nil'
   (setq header-line-format nil)
@@ -111,5 +110,13 @@
 ;; Let the desktop background show through
 (set-frame-parameter (selected-frame) 'alpha '(97 . 100))
 (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+
+;;; Presentation purpose
+;;; Another option to make a buffer like a slide
+(use-package logos
+  :ensure t
+  :custom
+  (logos-outlines-are-pages t)
+  (logos-hide-mode-line t))
 
 (provide 'init-presentation)
