@@ -1,5 +1,3 @@
-(defconst *is-a-mac* (eq system-type 'darwin))
-
 ;; Suppress GUI features
 
 (setq use-file-dialog nil)

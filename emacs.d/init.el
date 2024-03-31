@@ -118,7 +118,11 @@
 (global-auto-revert-mode 1)
 (setq global-auto-revert-non-file-buffers t)
 
+;;; define constant variables
+(defconst *is-a-mac* (eq system-type 'darwin))
+
 (require 'icomplete)
+(require 'init-macos-keys)
 (require 'init-paredit)
 (require 'init-clojure-cider)
 (require 'init-term)
@@ -138,6 +142,7 @@
 (require 'init-orgmode)
 (require 'init-docview)
 (require 'init-ai-assistant)
+(require 'init-input-methods)
 
 (use-package pyvenv
   :ensure t)
@@ -153,7 +158,7 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(setq custom-file (locate-user-emacs-file "cutom-vars.el"))
+(setq custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'noerror 'nomessage)
 
 
@@ -170,3 +175,16 @@
 
 ;;; most programming mode are inherited from prog-mode
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+;;; load ChatGPT keys for python environments
+(defun qy/setenv-from-dotenv (file-path)
+  "Read a .env file and set the environment variables."
+  (interactive "fPath to .env file: ")
+  (when (file-readable-p file-path)
+    (with-temp-buffer
+      (insert-file-contents file-path)
+      (goto-char (point-min))
+      (while (re-search-forward "^\\([^=]+\\)=\\(.*\\)$" nil t)
+        (setenv (match-string 1) (match-string 2))))))
+
+(qy/setenv-from-dotenv "~/.emacs.d/.env")
