@@ -56,9 +56,6 @@
   (ido-mode -1)
   (mouse-wheel-mode 0))                        ; disable ido-mode becuase of the vertico we enabled have conflict with it.
 
-(use-package cnfonts
-  :ensure t)
-
 (use-package cal-china-x
              :ensure t)
 
@@ -73,13 +70,6 @@
              :ensure t
              :bind-keymap ("C-c p" . projectile-command-map)
              :init (add-hook 'after-init-hook 'projectile-global-mode))
-
-(use-package rainbow-delimiters
-             :ensure t)
-
-(use-package clj-refactor
-             :ensure t
-             :pin melpa-stable)
 
 (use-package exec-path-from-shell
              :ensure t
@@ -96,16 +86,16 @@
              :config
              (setq-default highlight-symbol-idle-delay 1.5))
 
-(use-package avy
-             :ensure t
+(use-package avy :ensure t
              :bind
              ("C-," . avy-goto-char)
              ("C-'" . avy-goto-char-2)
              ("M-g f" . avy-goto-line)
              ("M-g w" . avy-goto-word-1))
 
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
+(use-package magit
+  :ensure t)
+
 
 ;;; Save what you enter into minibuffer
 (savehist-mode 1)
@@ -144,12 +134,33 @@
 (require 'init-ai-assistant)
 (require 'init-input-methods)
 
+(use-package erc
+  :config
+  (setq erc-server "irc.libera.chat"
+        erc-nick "SoftwareCrafters"
+        erc-user-full-name "Ryan Yin"
+        erc-track-shorten-start 8
+        erc-autojoin-channels-alist '(("irc.libera.chat" "#systemcrafters" "#emacs" "#clojure"))
+        erc-kill-buffer-on-part t
+        erc-auto-query 'bury)
+
+  (setq erc-fill-column 120
+        erc-fill-function 'erc-fill-static
+        erc-fill-static-center 20))
+
+
+(use-package slime
+  :ensure t
+  :config
+  (setq inferior-lisp-program "sbcl"))
+
 (use-package pyvenv
   :ensure t)
 
 ;;; timer
 (use-package tmr
   :ensure t)
+
 
 ;;; edit config file
 (global-set-key (kbd "<f6>") (lambda()
@@ -162,7 +173,7 @@
 (load custom-file 'noerror 'nomessage)
 
 
-(org-babel-load-file "~/Sync/org/writing_gnu_emacs_extensions.org" 'compile)
+(org-babel-load-file "~/Documents/org/writing_gnu_emacs_extensions.org" 'compile)
 
 (defun qy/dired-jump-siderbar ()
   (interactive)
@@ -188,3 +199,11 @@
         (setenv (match-string 1) (match-string 2))))))
 
 (qy/setenv-from-dotenv "~/.emacs.d/.env")
+
+(defun read-lines (filePath)
+  "Return a list of lines of a file at filePath."
+  (with-temp-buffer
+    (insert-file-contents filePath)
+    (split-string (buffer-string) "\n" t)))
+
+(read-lines "~/.emacs.d/.env")
